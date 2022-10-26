@@ -700,7 +700,7 @@ cfg_if! {
     } else if #[cfg(target_arch = "powerpc")] {
         mod powerpc;
         pub use self::powerpc::*;
-    } else if #[cfg(target_arch = "x86_64")] {
+    } else if #[cfg(target_arch = "x86-64")] {
         mode x86_64;
         pub use self::x86_64::*;
     } else {
