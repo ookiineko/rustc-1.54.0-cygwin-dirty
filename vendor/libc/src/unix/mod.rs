@@ -1432,6 +1432,12 @@ cfg_if! {
     if #[cfg(target_env = "newlib")] {
         mod newlib;
         pub use self::newlib::*;
+        cfg_if! {
+            if #[cfg(target_os = "cygwin")] {
+                mod cygwin;
+                pub use self::cygwin::*;
+            }
+        }
     } else if #[cfg(any(target_os = "linux",
                         target_os = "l4re",
                         target_os = "android",
