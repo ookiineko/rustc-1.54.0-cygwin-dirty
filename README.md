@@ -175,6 +175,14 @@ CALL "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary
 python x.py build
 ```
 
+#### Cygwin
+
+**WIP**
+
+```sh
+./x.py build && ./x.py install
+```
+
 #### Specifying an ABI
 
 Each specific ABI can also be used from either environment (for example, using

@@ -324,7 +324,7 @@ impl TargetInfo {
                     crate_type: Some(crate_type.clone()),
                     should_replace_hyphens: true,
                 });
-            } else if target_triple.ends_with("windows-gnu") && suffix == ".dll" {
+            } else if (target_triple.ends_with("windows-gnu") || target_triple.ends_with("cygwin")) && suffix == ".dll" {
                 // See https://cygwin.com/cygwin-ug-net/dll.html for more
                 // information about GNU import libraries.
                 // LD can link DLL directly, but LLD requires the import library.

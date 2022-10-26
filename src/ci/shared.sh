@@ -49,7 +49,11 @@ function isMacOS {
 }
 
 function isWindows {
-    [[ "${OSTYPE}" = "cygwin" ]] || [[ "${OSTYPE}" = "msys" ]]
+    [[ "${OSTYPE}" = "msys" ]]
+}
+
+function isCygwin {
+    [[ "${OSTYPE}" = "cygwin" ]]
 }
 
 function isLinux {

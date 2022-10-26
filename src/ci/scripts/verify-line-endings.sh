@@ -13,7 +13,7 @@ IFS=$'\n\t'
 
 source "$(cd "$(dirname "$0")" && pwd)/../shared.sh"
 
-if isWindows; then
+if isWindows || isCygwin; then
     # print out the git configuration so we can better investigate failures in
     # the following
     git config --list --show-origin

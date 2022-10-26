@@ -23,8 +23,10 @@ WINDOWS=$(X86_ARCHS)
 # fails with: failed to get iphonesimulator SDK path: no such file or directory
 #IOS=i386 aarch64 armv7
 DARWIN=$(X86_ARCHS)
+CYGWIN=x86_64
 
 $(foreach arch,$(LINUX),$(eval TARGETS += $(arch)-unknown-linux-gnu))
+$(foreach arch,$(CYGWIN),$(eval TARGETS += $(arch)-pc-gnu))
 $(foreach arch,$(WINDOWS),$(eval TARGETS += $(arch)-pc-windows-gnu))
 #$(foreach arch,$(IOS),$(eval TARGETS += $(arch)-apple-ios))
 $(foreach arch,$(DARWIN),$(eval TARGETS += $(arch)-apple-darwin))

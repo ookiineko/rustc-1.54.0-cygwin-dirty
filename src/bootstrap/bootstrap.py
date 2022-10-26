@@ -263,10 +263,10 @@ def default_build_triple(verbose):
     elif ostype.startswith('MSYS'):
         ostype = 'pc-windows-gnu'
     elif ostype.startswith('CYGWIN_NT'):
-        cputype = 'i686'
-        if ostype.endswith('WOW64'):
-            cputype = 'x86_64'
-        ostype = 'pc-windows-gnu'
+        cputype = 'x86_64'
+        if not ostype.endswith('WOW64'):
+            sys.exit('32-bit Cygwin is not support')
+        ostype = 'pc-cygwin'
     elif sys.platform == 'win32':
         # Some Windows platforms might have a `uname` command that returns a
         # non-standard string (e.g. gnuwin32 tools returns `windows32`). In

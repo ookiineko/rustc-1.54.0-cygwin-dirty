@@ -70,7 +70,7 @@ fn disable_error_reporting<F: FnOnce() -> R, R>(f: F) -> R {
 
 /// The name of the environment variable that holds dynamic library locations.
 pub fn dylib_env_var() -> &'static str {
-    if cfg!(windows) {
+    if cfg!(windows) || cfg!(target_os = "cygwin") {
         "PATH"
     } else if cfg!(target_os = "macos") {
         "DYLD_LIBRARY_PATH"
@@ -91,7 +91,7 @@ pub fn get_lib_name(lib: &str, dylib: bool) -> String {
         return format!("lib{}.rlib", lib);
     }
 
-    if cfg!(windows) {
+    if cfg!(windows) || cfg!(target_os = "cygwin") {
         format!("{}.dll", lib)
     } else if cfg!(target_os = "macos") {
         format!("lib{}.dylib", lib)
@@ -3122,6 +3122,8 @@ impl<'test> TestCx<'test> {
 
             if self.config.target.contains("windows") {
                 cmd.env("IS_WINDOWS", "1");
+            } else if self.config.target.contains("cygwin") {
+                cmd.env("IS_CYGWIN", "1");
             }
         }
 

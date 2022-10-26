@@ -10,7 +10,7 @@ fn main() {
     }
 
     if cfg!(feature = "llvm-libunwind")
-        && ((target.contains("linux") && !target.contains("musl")) || target.contains("fuchsia"))
+        && ((target.contains("linux") && !target.contains("musl")) || target.contains("fuchsia") || target.contains("cygwin"))
     {
         // Build the unwinding from libunwind C/C++ source code.
         llvm_libunwind::compile();
