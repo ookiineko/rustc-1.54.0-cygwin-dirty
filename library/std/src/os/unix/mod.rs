@@ -52,6 +52,8 @@ mod platform {
     pub use crate::os::ios::*;
     #[cfg(any(target_os = "linux", target_os = "l4re"))]
     pub use crate::os::linux::*;
+    #[cfg(target_os = "cygwin")]
+    pub use crate::os::cygwin::*;
     #[cfg(target_os = "macos")]
     pub use crate::os::macos::*;
     #[cfg(target_os = "netbsd")]
