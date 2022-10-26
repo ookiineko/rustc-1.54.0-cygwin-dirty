@@ -3,7 +3,7 @@ use crate::spec::{RelroLevel, TargetOptions};
 pub fn opts() -> TargetOptions {
     TargetOptions {
         os: "cygwin".to_string(),
-        env: "gnu".to_string(),
+        env: "newlib".to_string(),
         vendor: "pc".to_string(),
         dynamic_linking: true,
         executables: true,
