@@ -9,6 +9,18 @@ pub mod os {
     pub const EXE_EXTENSION: &str = "";
 }
 
+#[cfg(target_os = "cygwin")]
+pub mod os {
+    pub const FAMILY: &str = "unix";
+    pub const OS: &str = "cygwin";
+    pub const DLL_PREFIX: &str = "";
+    pub const DLL_SUFFIX: &str = ".dll";
+    pub const DLL_EXTENSION: &str = "dll";
+    pub const EXE_SUFFIX: &str = ".exe";
+    pub const EXE_EXTENSION: &str = "exe";
+}
+
+
 #[cfg(target_os = "macos")]
 pub mod os {
     pub const FAMILY: &str = "unix";
