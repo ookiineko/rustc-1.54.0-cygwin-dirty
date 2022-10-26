@@ -1,0 +1,26 @@
+warning: trait objects without an explicit `dyn` are deprecated
+  --> $DIR/not-on-bare-trait.rs:7:12
+   |
+LL | fn foo(_x: Foo + Send) {
+   |            ^^^^^^^^^^ help: use `dyn`: `dyn Foo + Send`
+   |
+   = note: `#[warn(bare_trait_objects)]` on by default
+   = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in the 2021 edition!
+   = note: for more information, see issue #80165 <https://github.com/rust-lang/rust/issues/80165>
+
+error[E0277]: the size for values of type `(dyn Foo + Send + 'static)` cannot be known at compilation time
+  --> $DIR/not-on-bare-trait.rs:7:8
+   |
+LL | fn foo(_x: Foo + Send) {
+   |        ^^ doesn't have a size known at compile-time
+   |
+   = help: the trait `Sized` is not implemented for `(dyn Foo + Send + 'static)`
+   = help: unsized fn params are gated as an unstable feature
+help: function arguments must have a statically known size, borrowed types always have a known size
+   |
+LL | fn foo(_x: &Foo + Send) {
+   |            ^
+
+error: aborting due to previous error; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0277`.

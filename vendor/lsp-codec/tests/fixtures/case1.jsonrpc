@@ -1,0 +1,15 @@
+Content-Length: 86
+
+{
+	"jsonrpc": "2.0",
+	"id": 1,
+	"method": "textDocument/didOpen",
+	"params": {}
+}Content-Length: 86
+
+{
+	"jsonrpc": "2.0",
+	"id": 2,
+	"method": "textDocument/didOpen",
+	"params": {}
+}
