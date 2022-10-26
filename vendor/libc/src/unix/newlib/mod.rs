@@ -701,7 +701,7 @@ cfg_if! {
         mod powerpc;
         pub use self::powerpc::*;
     } else if #[cfg(target_arch = "x86-64")] {
-        mode x86_64;
+        mod x86_64;
         pub use self::x86_64::*;
     } else {
         // Only tested on ARM so far. Other platforms might have different
