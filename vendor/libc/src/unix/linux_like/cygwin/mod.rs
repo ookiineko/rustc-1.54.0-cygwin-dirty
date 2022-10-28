@@ -20,6 +20,12 @@ pub type ino_t = u64;
 pub type nlink_t = ::c_ushort;
 pub type blksize_t = i32;
 pub type blkcnt_t = i64;
+pub type tcflag_t = ::c_uint;
+pub type speed_t = ::c_uint;
+
+pub const O_CLOEXEC: ::c_int = 0o1000000;
+pub const SO_TIMESTAMP: ::c_int = 0x300A;
+pub const NCCS: usize = 18;
 
 s! {
     pub struct msghdr {
@@ -115,12 +121,20 @@ s! {
     pub struct pthread_rwlockattr_t {
         __dummy: ::c_char,
     }
+
+    pub struct termios {
+        pub c_iflag: ::tcflag_t,
+        pub c_oflag: ::tcflag_t,
+        pub c_cflag: ::tcflag_t,
+        pub c_lflag: ::tcflag_t,
+        pub c_line: ::c_char,
+        pub c_cc: [::cc_t; ::NCCS],
+        pub c_ispeed: ::speed_t,
+        pub c_ospeed: ::speed_t,
+    }
 }
 
 pub type statfs64 = statfs;
 pub type statvfs64 = statvfs;
 pub type stat64 = stat;
 pub type dirent64 = dirent;
-
-pub const O_CLOEXEC: ::c_int = 0o1000000;
-pub const SO_TIMESTAMP: ::c_int = 0x300A;
