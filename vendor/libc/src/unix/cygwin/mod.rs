@@ -519,3 +519,7 @@ pub type statfs64 = statfs;
 pub type statvfs64 = statvfs;
 pub type stat64 = stat;
 pub type dirent64 = dirent;
+
+extern "C" {
+    pub fn bind(socket: ::c_int, address: *const ::sockaddr, address_len: ::socklen_t) -> ::c_int;
+}
