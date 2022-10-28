@@ -29,6 +29,47 @@ pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
 
+/* netdb.h */
+
+pub const AI_PASSIVE: ::c_int = 0x1;
+pub const AI_CANONNAME: ::c_int = 0x2;
+pub const AI_NUMERICHOST: ::c_int = 0x4;
+pub const AI_NUMERICSERV: ::c_int = 0x8;
+pub const AI_ALL: ::c_int = 0x100;
+pub const AI_ADDRCONFIG: ::c_int = 0x400;
+pub const AI_V4MAPPED: ::c_int = 0x800;
+pub const AI_IDN: ::c_int = 0x4000;
+pub const AI_CANONIDN: ::c_int = 0x8000;
+pub const AI_IDN_ALLOW_UNASSIGNED: ::c_int = 0x10000;
+pub const AI_IDN_USE_STD3_ASCII_RULES: ::c_int = 0x20000;
+
+pub const NI_NOFQDN: ::c_int = 0x1;
+pub const NI_NUMERICHOST: ::c_int = 0x2;
+pub const NI_NAMEREQD: ::c_int = 0x4;
+pub const NI_NUMERICSERV: ::c_int = 0x8;
+pub const NI_DGRAM: ::c_int = 0x10;
+pub const NI_IDN: ::c_int = 0x4000;
+pub const NI_IDN_ALLOW_UNASSIGNED: ::c_int = 0x10000;
+pub const NI_IDN_USE_STD3_ASCII_RULES: ::c_int = 0x20000;
+pub const NI_MAXHOST: ::c_int = 1025;
+pub const NI_MAXSERV: ::c_int = 32;
+
+pub const EAI_ADDRFAMILY: ::c_int = 1;
+pub const EAI_AGAIN: ::c_int = 2;
+pub const EAI_BADFLAGS: ::c_int = 3;
+pub const EAI_FAIL: ::c_int = 4;
+pub const EAI_FAMILY: ::c_int = 5;
+pub const EAI_MEMORY: ::c_int = 6;
+pub const EAI_NODATA: ::c_int = 7;
+pub const EAI_NONAME: ::c_int = 8;
+pub const EAI_SERVICE: ::c_int = 9;
+pub const EAI_SOCKTYPE: ::c_int = 10;
+pub const EAI_SYSTEM: ::c_int = 11;
+pub const EAI_BADHINTS: ::c_int = 12;
+pub const EAI_PROTOCOL: ::c_int = 13;
+pub const EAI_OVERFLOW: ::c_int = 14;
+pub const EAI_IDN_ENCODE: ::c_int = 15;
+
 s! {
     pub struct msghdr {
         pub msg_name: *mut ::c_void,
