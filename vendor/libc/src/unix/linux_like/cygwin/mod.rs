@@ -10,6 +10,7 @@ pub type suseconds_t = ::c_long;
 pub type rlim_t = c_ulong;
 pub type mode_t = u32;
 pub type socklen_t = ::c_int;
+pub type pthread_t = ::c_char;
 
 s! {
     pub struct msghdr {
