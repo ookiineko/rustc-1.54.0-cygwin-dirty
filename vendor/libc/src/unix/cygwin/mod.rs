@@ -1212,6 +1212,8 @@ s_no_extra_traits! {
         pub f_spare: [::c_long; 6],
     }
 
+    pub type statfs64 = statfs;
+
     /* sys/statvfs.h */
 
     pub struct statvfs {
@@ -1227,6 +1229,8 @@ s_no_extra_traits! {
         pub f_flag: ::c_ulong,
         pub f_namemax: ::c_ulong,
     }
+
+    pub type statvfs64 = statvfs;
 
     /* cygwin/stat.h */
 
@@ -1251,6 +1255,8 @@ s_no_extra_traits! {
         pub st_birthtim_nsec: ::c_long,
     }
 
+    pub type stat64 = stat;
+
     /* sys/dirent.h */
 
     pub struct dirent {
@@ -1261,6 +1267,8 @@ s_no_extra_traits! {
         pub __d_internal1: u32,
         pub d_name: [::c_char; 256],
     }
+
+    pub type dirent64 = dirent;
 
     /* sys/termios.h */
 
@@ -1302,7 +1310,7 @@ s_no_extra_traits! {
         pub if_name: *mut ::c_char,
     }
 
-/* cygwin/signal.h */
+    /* cygwin/signal.h */
 
     pub struct _libc_fpxreg {
         pub significand: [u16; 4],
@@ -1412,11 +1420,6 @@ s_no_extra_traits! {
         pub uc_flags: ::c_ulong,
     }
 }
-
-pub type statfs64 = statfs;
-pub type statvfs64 = statvfs;
-pub type stat64 = stat;
-pub type dirent64 = dirent;
 
 extern "C" {
     /* sys/socket.h */
@@ -1810,11 +1813,9 @@ f! {
             ((cmsg as usize) + CMSG_ALIGN((*cmsg).cmsg_len as usize)) as *mut cmsghdr
         }
     }
-}
 
-/* sys/select.h */
+    /* sys/select.h */
 
-f! {
     pub fn FD_CLR(fd: ::c_int, set: *mut fd_set) -> () {
         let fd = fd as usize;
         let size = ::mem::size_of(::c_ulong) * 8;
