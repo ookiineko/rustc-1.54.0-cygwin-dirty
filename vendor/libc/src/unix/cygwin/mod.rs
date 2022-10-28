@@ -1980,7 +1980,7 @@ safe_f! {
         (status & 0xff) == 0
     }
 
-    pub {const} fn WIFEXITED(status: ::c_int) -> bool {
+    pub {const} fn WIFSIGNALED(status: ::c_int) -> bool {
         (status & 0x7f) > 0 && (status & 0x7f) < 0x7f
     }
 
