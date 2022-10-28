@@ -364,6 +364,11 @@ s! {
         pub int_p_sign_posn: ::c_char,
     }
 
+    pub struct sockaddr_un {
+        pub sun_family: sa_family_t,
+        pub sun_path: [::c_char; 108]
+    }
+
     pub struct msghdr {
         pub msg_name: *mut ::c_void,
         pub msg_namelen: ::socklen_t,
