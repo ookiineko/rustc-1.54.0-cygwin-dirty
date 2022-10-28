@@ -1422,7 +1422,7 @@ s! {
     /* sys/sched.h */
 
     pub struct sched_param {
-        pub sched_priority: ::c_int;
+        pub sched_priority: ::c_int,
     }
 }
 
