@@ -1777,16 +1777,16 @@ const_fn! {
     {const} fn CMSG_ALIGN(len: usize) -> usize {
         len + ::mem::align_of::<cmsghdr>() - 1 & !(::mem::align_of::<cmsghdr>() - 1)
     }
+
+    pub {const} fn CMSG_SPACE(length: ::c_uint) -> ::c_uint {
+        (CMSG_ALIGN(length as usize) + CMSG_ALIGN(::mem::size_of::<cmsghdr>()))
+            as ::c_uint
+    }
 }
 
 f! {
     pub fn CMSG_LEN(length: ::c_uint) -> ::c_uint {
         CMSG_ALIGN(::mem::size_of::<cmsghdr>()) as ::c_uint + length
-    }
-
-    pub {const} fn CMSG_SPACE(length: ::c_uint) -> ::c_uint {
-        (CMSG_ALIGN(length as usize) + CMSG_ALIGN(::mem::size_of::<cmsghdr>()))
-            as ::c_uint
     }
 
     pub fn CMSG_FIRSTHDR(mhdr: *const msghdr) -> *mut cmsghdr {
