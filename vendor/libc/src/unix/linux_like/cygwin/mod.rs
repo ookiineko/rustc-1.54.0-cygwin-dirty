@@ -94,11 +94,21 @@ s! {
         pub st_birthtim: ::time_t,
         pub st_birthtim_nsec: ::c_long,
     }
+
+    pub struct dirent {
+        pub __d_version: u32,
+        pub d_ino: ::ino_t,
+        pub d_type: ::c_uchar,
+        pub __d_unused1:[::c_uchar; 3],
+        pub __d_internal1: u32,
+        pub d_name: [::c_char; 256],
+    }
 }
 
 pub type statfs64 = statfs;
 pub type statvfs64 = statvfs;
 pub type stat64 = stat;
+pub type dirent64 = dirent;
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
