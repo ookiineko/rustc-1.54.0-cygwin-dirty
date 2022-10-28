@@ -521,6 +521,17 @@ pub const IPPROTO_DSTOPTS: ::c_int = 60;
 pub const IPPROTO_RAW: ::c_int = 255;
 pub const IPPROTO_MAX: ::c_int = 256;
 
+/* dlfcn.h */
+
+pub const RTLD_DEFAULT: *mut ::c_void = 0i64 as *mut ::c_void;
+pub const RTLD_LOCAL: ::c_int = 0x0;
+pub const RTLD_LAZY: ::c_int = 0x1;
+pub const RTLD_NOW: ::c_int = 0x2;
+pub const RTLD_GLOBAL: ::c_int = 0x4;
+pub const RTLD_NODELETE: ::c_int = 0x8;
+pub const RTLD_NOLOAD: ::c_int = 0x10;
+pub const RTLD_DEEPBIND: ::c_int = 0x20;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
