@@ -1816,21 +1816,18 @@ f! {
 
     pub fn FD_CLR(fd: ::c_int, set: *mut fd_set) -> () {
         let fd = fd as usize;
-        let size = ::mem::size_of(super::cygwin::c_ulong) * 8;
-        (*set).fds_bits[fd / size] &= !(1 << (fd % size));
+        (*set).fds_bits[fd / 64] &= !(1 << (fd % 64));
         return
     }
 
     pub fn FD_ISSET(fd: ::c_int, set: *mut fd_set) -> bool {
         let fd = fd as usize;
-        let size = ::mem::size_of(super::cygwin::c_ulong) * 8;
-        return ((*set).fds_bits[fd / size] & (1 << (fd % size))) != 0
+        return ((*set).fds_bits[fd / 64] & (1 << (fd % 64))) != 0
     }
 
     pub fn FD_SET(fd: ::c_int, set: *mut fd_set) -> () {
         let fd = fd as usize;
-        let size = ::mem::size_of(super::cygwin::c_ulong) * 8;
-        (*set).fds_bits[fd / size] |= 1 << (fd % size);
+        (*set).fds_bits[fd / 64] |= 1 << (fd % 64);
         return
     }
 
