@@ -6,6 +6,7 @@ pub type c_long = i64;
 pub type c_ulong = u64;
 
 pub type time_t = ::c_long;
+pub type time64_t = time_t;
 pub type suseconds_t = ::c_long;
 pub type rlim_t = c_ulong;
 pub type mode_t = u32;
@@ -1657,7 +1658,7 @@ extern "C" {
 
     /* cygwin/time.h */
 
-    pub fn timegm(tm: *const ::tm) -> ::time64_t;
+    pub fn timegm(tm: *const ::tm) -> ::time_t;
     pub fn timegm64(tm: *const ::tm) -> ::time64_t;
 
     /* time.h */
