@@ -1433,14 +1433,12 @@ cfg_if! {
         mod newlib;
         pub use self::newlib::*;
     } else if #[cfg(any(target_os = "linux",
+                        target_os = "cygwin",
                         target_os = "l4re",
                         target_os = "android",
                         target_os = "emscripten"))] {
         mod linux_like;
         pub use self::linux_like::*;
-    } else if #[cfg(target_os = "cygwin")] {
-        mod cygwin;
-        pub use self::cygwin::*;
     } else if #[cfg(any(target_os = "macos",
                         target_os = "ios",
                         target_os = "freebsd",

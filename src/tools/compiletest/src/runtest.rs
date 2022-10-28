@@ -3122,8 +3122,6 @@ impl<'test> TestCx<'test> {
 
             if self.config.target.contains("windows") {
                 cmd.env("IS_WINDOWS", "1");
-            } else if self.config.target.contains("cygwin") {
-                cmd.env("IS_CYGWIN", "1");
             }
         }
 
