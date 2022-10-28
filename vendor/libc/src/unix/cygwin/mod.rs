@@ -1212,8 +1212,6 @@ s! {
         pub f_spare: [::c_long; 6],
     }
 
-    pub type statfs64 = statfs;
-
     /* sys/statvfs.h */
 
     pub struct statvfs {
@@ -1229,8 +1227,6 @@ s! {
         pub f_flag: ::c_ulong,
         pub f_namemax: ::c_ulong,
     }
-
-    pub type statvfs64 = statvfs;
 
     /* cygwin/stat.h */
 
@@ -1255,8 +1251,6 @@ s! {
         pub st_birthtim_nsec: ::c_long,
     }
 
-    pub type stat64 = stat;
-
     /* sys/dirent.h */
 
     pub struct dirent {
@@ -1267,8 +1261,6 @@ s! {
         pub __d_internal1: u32,
         pub d_name: [::c_char; 256],
     }
-
-    pub type dirent64 = dirent;
 
     /* sys/termios.h */
 
@@ -1420,6 +1412,11 @@ s! {
         pub uc_flags: ::c_ulong,
     }
 }
+
+pub type statfs64 = statfs;
+pub type statvfs64 = statvfs;
+pub type stat64 = stat;
+pub type dirent64 = dirent;
 
 extern "C" {
     /* sys/socket.h */
