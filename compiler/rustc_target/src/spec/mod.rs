@@ -71,6 +71,7 @@ mod linux_gnu_base;
 mod linux_kernel_base;
 mod linux_musl_base;
 mod linux_uclibc_base;
+mod cygwin_base;
 mod msvc_base;
 mod netbsd_base;
 mod openbsd_base;

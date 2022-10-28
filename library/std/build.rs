@@ -8,6 +8,7 @@ fn main() {
             println!("cargo:rustc-cfg=freebsd12");
         }
     } else if target.contains("linux")
+        || target.contains("cygwin")
         || target.contains("netbsd")
         || target.contains("dragonfly")
         || target.contains("openbsd")
