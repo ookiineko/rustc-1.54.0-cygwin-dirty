@@ -21,6 +21,12 @@ s! {
         pub msg_controllen: ::socklen_t,
         pub msg_flags: ::c_int,
     }
+
+    pub struct cmsghdr {
+        pub cmsg_len: ::size_t,
+        pub cmsg_level: ::c_int,
+        pub cmsg_type: ::c_int,
+    }
 }
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
