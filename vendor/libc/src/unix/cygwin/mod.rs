@@ -1001,7 +1001,7 @@ pub const SIG_UNBLOCK: ::c_int = 0x02;
 
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
-s_no_extra_traits! {
+s! {
     /* cygwin/socket.h */
 
     pub struct sockaddr {
