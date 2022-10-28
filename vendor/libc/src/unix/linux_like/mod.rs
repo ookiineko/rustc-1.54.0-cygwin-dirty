@@ -1634,8 +1634,10 @@ extern "C" {
 
 cfg_if! {
     if #[cfg(not(target_os = "cygwin"))] {
-        pub fn waitid(idtype: idtype_t, id: id_t, infop: *mut ::siginfo_t, options: ::c_int)
-            -> ::c_int;
+        extern "C" {
+            pub fn waitid(idtype: idtype_t, id: id_t, infop: *mut ::siginfo_t, options: ::c_int)
+                -> ::c_int;
+        }
     }
 }
 
