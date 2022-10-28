@@ -50,9 +50,24 @@ s! {
         pub f_namelen: ::c_long,
         pub f_spare: [::c_long; 6],
     }
+
+    pub struct statvfs {
+        pub f_bsize: ::c_ulong,
+        pub f_frsize: ::c_ulong,
+        pub f_blocks: c_ulong,
+        pub f_bfree: c_ulong,
+        pub f_bavail: c_ulong,
+        pub f_files: c_ulong,
+        pub f_ffree: c_ulong,
+        pub f_favail: c_ulong,
+        pub f_fsid: ::c_ulong,
+        pub f_flag: ::c_ulong,
+        pub f_namemax: ::c_ulong,
+    }
 }
 
 pub type statfs64 = statfs;
+pub type statvfs64 = statvfs;
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
