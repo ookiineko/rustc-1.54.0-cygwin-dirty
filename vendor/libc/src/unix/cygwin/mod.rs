@@ -29,6 +29,8 @@ pub type sa_family_t = u16;
 pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
+const ULONG_SIZE: usize = 64;
+pub const FD_SETSIZE: usize = 64;
 
 /* netdb.h */
 
@@ -276,6 +278,10 @@ s! {
         pub tm_isdst: ::c_int,
         pub tm_gmtoff: ::c_long,
         pub tm_zone: *const ::c_char,
+    }
+
+    pub struct fd_set {
+        fds_bits: [::c_ulong; FD_SETSIZE / ULONG_SIZE],
     }
 
     pub struct msghdr {
