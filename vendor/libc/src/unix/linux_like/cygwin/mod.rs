@@ -4,3 +4,5 @@ pub type wchar_t = u16;
 
 pub type c_long = i64;
 pub type c_ulong = u64;
+
+pub type time_t = ::c_long;
