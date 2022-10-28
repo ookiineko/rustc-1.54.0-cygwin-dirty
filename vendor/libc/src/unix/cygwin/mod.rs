@@ -1075,6 +1075,19 @@ pub const POSIX_FADV_WILLNEED: ::c_int = 3;
 pub const POSIX_FADV_DONTNEED: ::c_int = 4;
 pub const POSIX_FADV_NOREUSE: ::c_int = 5;
 
+/* sys/poll.h */
+
+pub const POLLIN: ::c_short = 0x1;
+pub const POLLPRI: ::c_short = 0x2;
+pub const POLLOUT: ::c_short = 0x4;
+pub const POLLERR: ::c_short = 0x8;
+pub const POLLHUP: ::c_short = 0x10;
+pub const POLLNVAL: ::c_short = 0x20;
+pub const POLLRDNORM: ::c_short = POLLIN;
+pub const POLLRDBAND: ::c_short = POLLPRI;
+pub const POLLWRNORM: ::c_short = POLLOUT;
+pub const POLLWRBAND: ::c_short = POLLOUT;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
