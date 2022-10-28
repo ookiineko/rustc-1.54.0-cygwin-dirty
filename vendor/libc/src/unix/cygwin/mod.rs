@@ -24,6 +24,7 @@ pub type tcflag_t = ::c_uint;
 pub type speed_t = ::c_uint;
 pub type sigset_t = ::c_ulong;
 pub type nfds_t = ::c_uint;
+pub type sa_family_t = u16;
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
@@ -219,6 +220,11 @@ pub const SOCK_NONBLOCK: ::c_int = 0x01000000;
 pub const SOCK_CLOEXEC: ::c_int = 0x02000000;
 
 s! {
+    pub struct sockaddr {
+        pub sa_family: sa_family_t,
+        pub sa_data: [::c_char; 14],
+    }
+
     pub struct msghdr {
         pub msg_name: *mut ::c_void,
         pub msg_namelen: ::socklen_t,
