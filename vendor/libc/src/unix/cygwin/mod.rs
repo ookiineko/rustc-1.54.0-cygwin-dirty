@@ -225,6 +225,10 @@ s! {
         pub sa_data: [::c_char; 14],
     }
 
+    pub struct in_addr {
+        pub s_addr: ::in_addr_t,
+    }
+
     pub struct sockaddr_in {
         pub sin_family: sa_family_t,
         pub sin_port: ::in_port_t,
