@@ -498,6 +498,29 @@ pub const TIOCLINUX: ::c_int = 0x5403;
 pub const TIOCGPGRP: ::c_int = 0x540f;
 pub const TIOCSPGRP: ::c_int = 0x5410;
 
+/* cygwin/in.h */
+
+pub const IPPROTO_IP: ::c_int = 0;
+pub const IPPROTO_HOPOPTS: ::c_int = 0;
+pub const IPPROTO_ICMP: ::c_int = 1;
+pub const IPPROTO_IGMP: ::c_int = 2;
+pub const IPPROTO_IPIP: ::c_int = 4;
+pub const IPPROTO_TCP: ::c_int = 6;
+pub const IPPROTO_EGP: ::c_int = 8;
+pub const IPPROTO_PUP: ::c_int = 12;
+pub const IPPROTO_UDP: ::c_int = 17;
+pub const IPPROTO_IDP: ::c_int = 22;
+pub const IPPROTO_IPV6: ::c_int = 41;
+pub const IPPROTO_ROUTING: ::c_int = 43;
+pub const IPPROTO_FRAGMENT: ::c_int = 44;
+pub const IPPROTO_ESP: ::c_int = 50;
+pub const IPPROTO_AH: ::c_int = 51;
+pub const IPPROTO_ICMPV6: ::c_int = 58;
+pub const IPPROTO_NONE: ::c_int = 59;
+pub const IPPROTO_DSTOPTS: ::c_int = 60;
+pub const IPPROTO_RAW: ::c_int = 255;
+pub const IPPROTO_MAX: ::c_int = 256;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
@@ -736,6 +759,27 @@ s! {
         pub sa_sigaction: ::sighandler_t,
         pub sa_mask: ::sigset_t,
         pub sa_flags: ::c_int,
+    }
+
+    pub struct ip_mreq {
+        pub imr_multiaddr: in_addr,
+        pub imr_interface: in_addr,
+    }
+
+    pub struct ip_mreq_source {
+        pub imr_multiaddr: in_addr,
+        pub imr_interface: in_addr,
+        pub imr_sourceaddr: in_addr,
+    }
+
+    pub struct in_pktinfo {
+        pub ipi_addr: ::in_addr,
+        pub ipi_ifindex: u32,
+    }
+
+    pub struct in6_pktinfo {
+        pub ipi6_addr: ::in6_addr,
+        pub ipi6_ifindex: u32,
     }
 }
 
