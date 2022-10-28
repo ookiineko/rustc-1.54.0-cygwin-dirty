@@ -28,7 +28,6 @@ pub type nfds_t = ::c_uint;
 pub type sa_family_t = u16;
 pub type clockid_t = ::c_ulong;
 
-pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
 const ULONG_SIZE: usize = 64;
@@ -1007,6 +1006,75 @@ pub const SCHED_OTHER: ::c_int = 3;
 pub const SCHED_FIFO: ::c_int = 1;
 pub const SCHED_RR: ::c_int = 2;
 
+/* sys/_default_fcntl.h */
+
+pub const O_RDONLY: ::c_int = 0;
+pub const O_WRONLY: ::c_int = 1;
+pub const O_RDWR: ::c_int = 2;
+pub const O_ACCMODE: ::c_in = (O_RDONLY|O_WRONLY|O_RDWR);
+pub const O_APPEND: ::c_int = 0x0008;
+pub const O_CREAT: ::c_int = 0x0200;
+pub const O_TRUNC: ::c_int = 0x0400;
+pub const O_EXCL: ::c_int = 0x0800;
+pub const O_SYNC: ::c_int = 0x2000;
+pub const O_NONBLOCK: ::c_int = 0x4000;
+pub const O_NOCTTY: ::c_int = 0x8000;
+pub const O_CLOEXEC: ::c_int = 0x40000;
+pub const O_NOFOLLOW: ::c_int = 0x100000;
+pub const O_DIRECTORY: ::c_int = 0x200000;
+pub const O_EXEC: ::c_int = 0x400000;
+pub const O_SEARCH: ::c_int = 0x400000;
+pub const O_DIRECT: ::c_int = 0x80000;
+pub const O_BINARY: ::c_int = 0x10000;
+pub const O_TEXT: ::c_int = 0x20000;
+pub const O_DSYNC: ::c_int = O_SYNC;
+pub const O_RSYNC: ::c_int = O_SYNC;
+pub const O_TMPFILE: ::c_int = 0x800000;
+pub const O_NOATIME: ::c_int = 0x1000000;
+pub const O_PATH: ::c_int = 0x2000000;
+
+pub const F_DUPFD: ::c_int = 0;
+pub const F_GETFD: ::c_int = 1;
+pub const F_SETFD: ::c_int = 2;
+pub const F_GETFL: ::c_int = 3;
+pub const F_SETFL: ::c_int = 4;
+pub const F_GETOWN: ::c_int = 5;
+pub const F_SETOWN: ::c_int = 6;
+pub const F_GETLK: ::c_int = 7;
+pub const F_SETLK: ::c_int = 8;
+pub const F_SETLKW: ::c_int = 9;
+pub const F_RGETLK: ::c_int = 10;
+pub const F_RSETLK: ::c_int = 11;
+pub const F_CNVT: ::c_int = 12;
+pub const F_RSETLKW: ::c_int = 13;
+pub const F_DUPFD_CLOEXEC: ::c_int = 14;
+pub const F_RDLCK: ::c_int = 1;
+pub const F_WRLCK: ::c_int = 2;
+pub const F_UNLCK: ::c_int = 3;
+
+pub const AT_FDCWD: ::c_int = -2;
+pub const AT_EACCESS: ::c_int = 1;
+pub const AT_SYMLINK_NOFOLLOW: ::c_int = 2;
+pub const AT_SYMLINK_FOLLOW: ::c_int = 4;
+pub const AT_REMOVEDIR: ::c_int = 8;
+pub const AT_EMPTY_PATH: ::c_int = 16;
+
+pub const LOCK_SH: ::c_int = 1;
+pub const LOCK_EX: ::c_int = 2;
+pub const LOCK_NB: ::c_int = 4;
+pub const LOCK_UN: ::c_int = 8;
+
+/* fcntl.h */
+
+pub const O_NDELAY: ::c_int = O_NONBLOCK;
+
+pub const POSIX_FADV_NORMAL: ::c_int = 0;
+pub const POSIX_FADV_SEQUENTIAL: ::c_int = 1;
+pub const POSIX_FADV_RANDOM: ::c_int = 2;
+pub const POSIX_FADV_WILLNEED: ::c_int = 3;
+pub const POSIX_FADV_DONTNEED: ::c_int = 4;
+pub const POSIX_FADV_NOREUSE: ::c_int = 5;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
@@ -1787,6 +1855,27 @@ extern "C" {
     /* sys/ioctl.h */
 
     pub fn ioctl(fd: ::c_int, request: ::c_int, ...) -> ::c_int;
+
+    /* sys/_default_fcntl.h */
+
+    pub fn open(path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
+    pub fn open64(path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
+    pub fn openat(fd: ::c_int, path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
+    pub fn openat64(fd: ::c_int, path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
+    pub fn creat(path: *const c_char, mode: mode_t) -> ::c_int;
+    pub fn creat64(path: *const c_char, mode: mode_t) -> ::c_int;
+
+    /* fcntl.h */
+
+    pub fn posix_fadvise(fd: ::c_int, offset: ::off_t, len: ::off_t, advise: ::c_int) -> ::c_int;
+    pub fn posix_fadvise64(
+        fd: ::c_int,
+        offset: ::off64_t,
+        len: ::off64_t,
+        advise: ::c_int,
+    ) -> ::c_int;
+    pub fn posix_fallocate(fd: ::c_int, offset: ::off_t, len: ::off_t) -> ::c_int;
+    pub fn posix_fallocate64(fd: ::c_int, offset: ::off64_t, len: ::off64_t) -> ::c_int;
 }
 
 /* cygwin/socket.h */
