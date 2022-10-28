@@ -1817,7 +1817,7 @@ f! {
 
     pub fn CMSG_NXTHDR(mhdr: *const msghdr,
                        cmsg: *const cmsghdr) -> *mut cmsghdr {
-        if ((cmsg as usize) + CMSG_SPACE((*cmsg).cmsg_len as usize) as usize)
+        if ((cmsg as usize) + CMSG_SPACE((*cmsg).cmsg_len) as usize)
            > (((*mhdr).msg_control as usize) + ((*mhdr).msg_controllen as usize)) {
             0 as *mut cmsghdr
         } else {
