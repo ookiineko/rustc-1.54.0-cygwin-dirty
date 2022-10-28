@@ -52,6 +52,22 @@ s! {
         __dummy: ::c_char,
     }
 
+    pub struct pthread_condattr_t {
+        __dummy: ::c_char,
+    }
+
+    pub struct pthread_mutexattr_t {
+        __dummy: ::c_char,
+    }
+
+    pub struct pthread_rwlockattr_t {
+        __dummy: ::c_char,
+    }
+
+    pub struct pthread_key_t {
+        __dummy: ::c_char,
+    }
+
     pub struct statfs {
         pub f_type: ::c_long,
         pub f_bsize: ::c_long,
@@ -108,18 +124,6 @@ s! {
         pub __d_unused1:[::c_uchar; 3],
         pub __d_internal1: u32,
         pub d_name: [::c_char; 256],
-    }
-
-    pub struct pthread_condattr_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_mutexattr_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_rwlockattr_t {
-        __dummy: ::c_char,
     }
 
     pub struct termios {
