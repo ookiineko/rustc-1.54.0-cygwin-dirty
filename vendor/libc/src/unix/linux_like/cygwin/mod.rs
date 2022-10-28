@@ -6,3 +6,4 @@ pub type c_long = i64;
 pub type c_ulong = u64;
 
 pub type time_t = ::c_long;
+pub type suseconds_t = ::c_long;
