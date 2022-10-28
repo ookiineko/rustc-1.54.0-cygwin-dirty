@@ -12,6 +12,7 @@ pub type mode_t = u32;
 pub type socklen_t = ::c_int;
 pub type pthread_t = ::c_char;  // __dummy
 pub type off_t = ::c_long;
+pub type off64_t = off_t;
 
 s! {
     pub struct msghdr {
