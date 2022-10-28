@@ -1099,6 +1099,12 @@ pub const TCP_FASTOPEN: ::c_int = 15;
 pub const TCP_KEEPCNT: ::c_int = 16;
 pub const TCP_KEEPINTVL: ::c_int = 17;
 
+/* cygwin/wait.h */
+
+pub const WNOHANG: ::c_int = 0x00000001;
+pub const WUNTRACED: ::c_int = 0x00000002;
+pub const WCONTINUED: ::c_int = 0x00000008;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
@@ -1964,5 +1970,41 @@ f! {
     pub fn FD_ZERO(set: *mut fd_set) -> () {
         (*set).fds_bits[0] = 0;
         return
+    }
+}
+
+safe_f! {
+    /* cygwin/wait.h */
+
+    pub {const} fn WIFEXITED(status: ::c_int) -> bool {
+        (status & 0xff) == 0
+    }
+
+    pub {const} fn WIFEXITED(status: ::c_int) -> bool {
+        (status & 0x7f) > 0 && (status & 0x7f) < 0x7f
+    }
+
+    pub {const} fn WIFSTOPPED(status: ::c_int) -> bool {
+        (status & 0xff) == 0x7f
+    }
+
+    pub {const} fn WIFCONTINUED(status: ::c_int) -> bool {
+        (status & 0xffff) == 0xffff
+    }
+
+    pub {const} fn WEXITSTATUS(status: ::c_int) -> ::c_int {
+        (status >> 8) & 0xff
+    }
+
+    pub {const} fn WTERMSIG(status: ::c_int) -> ::c_int {
+        status & 0x7f
+    }
+
+    pub {const} fn WSTOPSIG(status: ::c_int) -> ::c_int {
+        (status >> 8) & 0xff
+    }
+
+    pub {const} fn WCOREDUMP(status: ::c_int) -> bool {
+        WIFSIGNALED(status) && (status & 0x80)
     }
 }
