@@ -72,6 +72,10 @@ s! {
         __dummy: ::c_char,
     }
 
+    pub struct pthread_cond_t {
+        __dummy: ::c_char,
+    }
+
     pub struct statfs {
         pub f_type: ::c_long,
         pub f_bsize: ::c_long,
