@@ -22,6 +22,7 @@ pub type blksize_t = i32;
 pub type blkcnt_t = i64;
 pub type tcflag_t = ::c_uint;
 pub type speed_t = ::c_uint;
+pub type sigset_t = ::c_ulong;
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
