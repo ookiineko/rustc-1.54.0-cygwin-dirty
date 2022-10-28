@@ -132,6 +132,17 @@ s! {
         pub c_ispeed: ::speed_t,
         pub c_ospeed: ::speed_t,
     }
+
+    pub struct passwd {
+        pub pw_name: *mut ::c_char,
+        pub pw_passwd: *mut ::c_char,
+        pub pw_uid: ::uid_t,
+        pub pw_gid: ::gid_t,
+        pub pw_comment: *mut ::c_char,
+        pub pw_gecos: *mut ::c_char,
+        pub pw_dir: *mut ::c_char,
+        pub pw_shell: *mut ::c_char,
+    }
 }
 
 pub type statfs64 = statfs;
