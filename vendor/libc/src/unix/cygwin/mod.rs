@@ -219,6 +219,8 @@ pub const SOPRI_BACKGROUND: ::c_int = 2;
 pub const SOCK_NONBLOCK: ::c_int = 0x01000000;
 pub const SOCK_CLOEXEC: ::c_int = 0x02000000;
 
+// The order of fields in these structs are crucial
+// for converting between the Rust and C types.
 s! {
     pub struct sockaddr {
         pub sa_family: sa_family_t,
@@ -249,6 +251,17 @@ s! {
         pub dli_fbase: *mut ::c_void,
         pub dli_sname: *const ::c_char,
         pub dli_saddr: *mut ::c_void,
+    }
+
+    pub struct addrinfo {
+        pub ai_flags: ::c_int,
+        pub ai_family: ::c_int,
+        pub ai_socktype: ::c_int,
+        pub ai_protocol: ::c_int,
+        pub ai_addrlen: socklen_t,
+        pub ai_canonname: *mut c_char,
+        pub ai_addr: *mut ::sockaddr,
+        pub ai_next: *mut addrinfo,
     }
 
     pub struct msghdr {
