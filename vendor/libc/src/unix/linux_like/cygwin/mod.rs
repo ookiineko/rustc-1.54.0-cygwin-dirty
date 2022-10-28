@@ -24,3 +24,4 @@ s! {
 }
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
+pub const SO_TIMESTAMP: ::c_int = 0x300A;
