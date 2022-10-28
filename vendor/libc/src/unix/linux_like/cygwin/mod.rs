@@ -10,3 +10,15 @@ pub type suseconds_t = ::c_long;
 pub type rlim_t = c_ulong;
 pub type mode_t = u32;
 pub type socklen_t = c_int;
+
+s! {
+    pub struct msghdr {
+        pub msg_name: *mut ::c_void,
+        pub msg_namelen: ::socklen_t,
+        pub msg_iov: *mut ::iovec,
+        pub msg_iovlen: ::c_int,
+        pub msg_control: *mut ::c_void,
+        pub msg_controllen: ::socklen_t,
+        pub msg_flags: ::c_int,
+    }
+}
