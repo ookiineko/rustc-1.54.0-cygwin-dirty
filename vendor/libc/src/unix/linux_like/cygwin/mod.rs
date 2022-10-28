@@ -159,6 +159,12 @@ s! {
         pub pw_dir: *mut ::c_char,
         pub pw_shell: *mut ::c_char,
     }
+
+    pub struct sigaction {
+        pub sa_sigaction: ::sighandler_t,
+        pub sa_mask: ::sigset_t,
+        pub sa_flags: ::c_int,
+    }
 }
 
 pub type statfs64 = statfs;
