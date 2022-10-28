@@ -22,3 +22,5 @@ s! {
         pub msg_flags: ::c_int,
     }
 }
+
+pub const O_CLOEXEC: ::c_int = 0o1000000;
