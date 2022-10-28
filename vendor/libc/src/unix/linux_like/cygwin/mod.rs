@@ -36,6 +36,20 @@ s! {
     pub struct pthread_attr_t {
         __dummy: [::c_char],
     }
+
+    pub struct statfs {
+        pub f_type: ::c_long,
+        pub f_bsize: ::c_long,
+        pub f_blocks: ::c_long,
+        pub f_bfree: ::c_long,
+        pub f_bavail: ::c_long,
+        pub f_files: ::c_long,
+        pub f_ffree: ::c_long,
+
+        pub f_fsid: ::c_long,
+        pub f_namelen: ::c_long,
+        pub f_spare: [::c_long; 6],
+    }
 }
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
