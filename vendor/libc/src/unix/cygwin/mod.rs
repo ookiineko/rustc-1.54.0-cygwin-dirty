@@ -1000,6 +1000,12 @@ pub const SIG_SETMASK: ::c_int = 0;
 pub const SIG_BLOCK: ::c_int = 0x000001;
 pub const SIG_UNBLOCK: ::c_int = 0x02;
 
+/* sys/sched.h */
+
+pub const SCHED_OTHER: ::c_int = 3;
+pub const SCHED_FIFO: ::c_int = 1;
+pub const SCHED_RR: ::c_int = 2;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
@@ -1411,6 +1417,12 @@ s! {
         pub uc_sigmask: ::sigset_t,
         pub uc_stack: ::stack_t,
         pub uc_flags: ::c_ulong,
+    }
+
+    /* sys/sched.h */
+
+    pub struct sched_param {
+        pub sched_priority: ::c_int;
     }
 }
 
