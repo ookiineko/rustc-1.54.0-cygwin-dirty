@@ -27,6 +27,10 @@ s! {
         pub cmsg_level: ::c_int,
         pub cmsg_type: ::c_int,
     }
+
+    pub struct sem_t {
+        __val: [::c_char],
+    }
 }
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
