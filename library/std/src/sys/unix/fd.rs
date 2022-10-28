@@ -206,6 +206,7 @@ impl FileDesc {
         target_os = "fuchsia",
         target_os = "l4re",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "haiku",
         target_os = "redox",
         target_os = "vxworks"
