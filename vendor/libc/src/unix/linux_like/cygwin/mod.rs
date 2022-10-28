@@ -8,3 +8,4 @@ pub type c_ulong = u64;
 pub type time_t = ::c_long;
 pub type suseconds_t = ::c_long;
 pub type rlim_t = c_ulong;
+pub type mode_t = u32;
