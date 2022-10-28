@@ -68,6 +68,10 @@ s! {
         __dummy: ::c_char,
     }
 
+    pub struct pthread_mutex_t {
+        __dummy: ::c_char,
+    }
+
     pub struct statfs {
         pub f_type: ::c_long,
         pub f_bsize: ::c_long,
