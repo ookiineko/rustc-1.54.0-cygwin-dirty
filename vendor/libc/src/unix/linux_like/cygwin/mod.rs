@@ -13,6 +13,13 @@ pub type socklen_t = ::c_int;
 pub type pthread_t = ::c_char;  // __dummy
 pub type off_t = ::c_long;
 pub type off64_t = off_t;
+pub type fsblkcnt_t = ::c_ulong;
+pub type fsfilcnt_t = ::c_ulong;
+pub type dev_t = u32;
+pub type ino_t = u64;
+pub type nlink_t = ::c_ushort;
+pub type blksize_t = i32;
+pub type blkcnt_t = i64;
 
 s! {
     pub struct msghdr {
@@ -56,12 +63,12 @@ s! {
     pub struct statvfs {
         pub f_bsize: ::c_ulong,
         pub f_frsize: ::c_ulong,
-        pub f_blocks: c_ulong,
-        pub f_bfree: c_ulong,
-        pub f_bavail: c_ulong,
-        pub f_files: c_ulong,
-        pub f_ffree: c_ulong,
-        pub f_favail: c_ulong,
+        pub f_blocks: fsblkcnt_t,
+        pub f_bfree: fsblkcnt_t,
+        pub f_bavail: fsblkcnt_t,
+        pub f_files: fsfilcnt_t,
+        pub f_ffree: fsfilcnt_t,
+        pub f_favail: fsfilcnt_t,
         pub f_fsid: ::c_ulong,
         pub f_flag: ::c_ulong,
         pub f_namemax: ::c_ulong,
