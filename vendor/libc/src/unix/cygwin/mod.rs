@@ -274,6 +274,230 @@ pub const STDIN_FILENO: ::c_int = 0;
 pub const STDOUT_FILENO: ::c_int = 1;
 pub const STDERR_FILENO: ::c_int = 2;
 
+/* cygwin/if.h */
+
+pub const IFF_UP: ::c_int = 0x1;
+pub const IFF_BROADCAST: ::c_int = 0x2;
+pub const IFF_LOOPBACK: ::c_int = 0x8;
+pub const IFF_POINTOPOINT: ::c_int = 0x10;
+pub const IFF_NOTRAILERS: ::c_int = 0x20;
+pub const IFF_RUNNING: ::c_int = 0x40;
+pub const IFF_NOARP: ::c_int = 0x80;
+pub const IFF_PROMISC: ::c_int = 0x100;
+pub const IFF_MULTICAST: ::c_int = 0x1000;
+pub const IFF_LOWER_UP: ::c_int = 0x10000;
+pub const IFF_DORMANT: ::c_int = 0x20000;
+
+/* asm/socket.h */
+
+pub const FIONREAD: ::c_ulong = 0x4008667f;
+pub const FIONBIO: ::c_ulong = 0x8004667e;
+pub const SIOCGIFCONF: ::c_ulong = 0x80107364;
+pub const SIOCGIFFLAGS: ::c_ulong = 0x80507365;
+pub const SIOCGIFADDR: ::c_ulong = 0x80507366;
+pub const SIOCGIFBRDADDR: ::c_ulong = 0x80507367;
+pub const SIOCGIFNETMASK: ::c_ulong = 0x80507368;
+pub const SIOCGIFHWADDR: ::c_ulong = 0x80507369;
+pub const SIOCGIFMETRIC: ::c_ulong = 0x8050736a;
+pub const SIOCGIFMTU: ::c_ulong = 0x8050736b;
+pub const SIOCGIFDSTADDR: ::c_ulong = 0x8050736e;
+
+pub const SOL_SOCKET: ::c_int = 0xffff;
+
+pub const SO_DEBUG: ::c_int = 0x0001;
+pub const SO_ACCEPTCONN: ::c_int = 0x0002;
+pub const SO_REUSEADDR: ::c_int = 0x0004;
+pub const SO_KEEPALIVE: ::c_int = 0x0008;
+pub const SO_DONTROUTE: ::c_int = 0x0010;
+pub const SO_BROADCAST: ::c_int = 0x0020;
+pub const SO_LINGER: ::c_int = 0x0080;
+pub const SO_OOBINLINE: ::c_int = 0x0100;
+pub const SO_PEERCRED: ::c_int = 0x0200;
+pub const SO_PASSCRED: ::c_int = 0x0400;
+
+pub const SO_SNDBUF: ::c_int = 0x1001;
+pub const SO_RCVBUF: ::c_int = 0x1002;
+pub const SO_SNDLOWAT: ::c_int = 0x1003;
+pub const SO_RCVLOWAT: ::c_int = 0x1004;
+pub const SO_SNDTIMEO: ::c_int = 0x1005;
+pub const SO_RCVTIMEO: ::c_int = 0x1006;
+pub const SO_ERROR: ::c_int = 0x1007;
+pub const SO_TYPE: ::c_int = 0x1008;
+
+/* sys/termios.h */
+
+pub const TIOCMGET: ::c_ulong = 0x5415;
+pub const TIOCMBIS: ::c_ulong = 0x5416;
+pub const TIOCMBIC: ::c_ulong = 0x5417;
+pub const TIOCMSET: ::c_ulong = 0x5418;
+pub const TIOCINQ: ::c_ulong = 0x541B;
+pub const TIOCSCTTY: ::c_ulong = 0x540E;
+pub const TIOCSBRK: ::c_ulong = 0x5427;
+pub const TIOCCBRK: ::c_ulong = 0x540E;
+pub const TIOCM_DTR: ::c_int = 0x002;
+pub const TIOCM_RTS: ::c_int = 0x004;
+pub const TIOCM_CTS: ::c_int = 0x020;
+pub const TIOCM_CAR: ::c_int = 0x040;
+pub const TIOCM_RNG: ::c_int = 0x080;
+pub const TIOCM_DSR: ::c_int = 0x100;
+pub const TIOCM_CD: ::c_int = TIOCM_CAR;
+pub const TIOCM_RI: ::c_int = TIOCM_RNG;
+
+pub const TCOOFF: ::c_int = 0;
+pub const TCOON: ::c_int = 1;
+pub const TCIOFF: ::c_int = 2;
+pub const TCION: ::c_int = 3;
+pub const TCGETA: ::c_int = 5;
+pub const TCSETA: ::c_int = 6;
+pub const TCSETAW: ::c_int = 7;
+pub const TCSETAF: ::c_int = 8;
+pub const TCIFLUSH: ::c_int = 0;
+pub const TCOFLUSH: ::c_int = 1;
+pub const TCIOFLUSH: ::c_int = 2;
+pub const TCFLSH: ::c_int = 3;
+pub const TCSAFLUSH: ::c_int = 1;
+pub const TCSANOW: ::c_int = 2;
+pub const TCSADRAIN: ::c_int = 3;
+pub const TCSADFLUSH: ::c_int = 4;
+pub const TIOCPKT: ::c_int = 6;
+
+pub const IGNBRK: ::tcflag_t = 0x00001;
+pub const BRKINT: ::tcflag_t = 0x00002;
+pub const IGNPAR: ::tcflag_t = 0x00003;
+pub const IMAXBEL: ::tcflag_t = 0x00008;
+pub const INPCK: ::tcflag_t = 0x00010;
+pub const ISTRIP: ::tcflag_t = 0x00020;
+pub const INLCR: ::tcflag_t = 0x00040;
+pub const IGNCR: ::tcflag_t = 0x00080;
+pub const ICRNL: ::tcflag_t = 0x00100;
+pub const IXON: ::tcflag_t = 0x00400;
+pub const IXOFF: ::tcflag_t = 0x01000;
+pub const IUCLC: ::tcflag_t = 0x04000;
+pub const IXANY: ::tcflag_t = 0x08000;
+pub const PARMRK: ::tcflag_t = 0x10000;
+pub const IUTF8: ::tcflag_t = 0x20000;
+
+pub const OPOST: ::tcflag_t = 0x00001;
+pub const OLCUC: ::tcflag_t = 0x00002;
+pub const OCRNL: ::tcflag_t = 0x00004;
+pub const ONLCR: ::tcflag_t = 0x00008;
+pub const ONOCR: ::tcflag_t = 0x00010;
+pub const ONLRET: ::tcflag_t = 0x00020;
+pub const OFILL: ::tcflag_t = 0x00040;
+pub const CRDLY: ::tcflag_t = 0x00180;
+pub const CR0: ::tcflag_t = 0x00000;
+pub const CR1: ::tcflag_t = 0x00080;
+pub const CR2: ::tcflag_t = 0x00100;
+pub const CR3: ::tcflag_t = 0x00180;
+pub const NLDLY: ::tcflag_t = 0x00200;
+pub const NL0: ::tcflag_t = 0x00000;
+pub const NL1: ::tcflag_t = 0x00200;
+pub const BSDLY: ::tcflag_t = 0x00400;
+pub const BS0: ::tcflag_t = 0x00000;
+pub const BS1: ::tcflag_t = 0x00400;
+pub const TABDLY: ::tcflag_t = 0x01800;
+pub const TAB0: ::tcflag_t = 0x00000;
+pub const TAB1: ::tcflag_t = 0x00800;
+pub const TAB2: ::tcflag_t = 0x01000;
+pub const TAB3: ::tcflag_t = 0x01800;
+pub const XTABS: ::tcflag_t = 0x01800;
+pub const VTDLY: ::tcflag_t = 0x02000;
+pub const VT0: ::tcflag_t = 0x00000;
+pub const VT1: ::tcflag_t = 0x02000;
+pub const FFDLY: ::tcflag_t = 0x04000;
+pub const FF0: ::tcflag_t = 0x00000;
+pub const FF1: ::tcflag_t = 0x04000;
+pub const OFDEL: ::tcflag_t = 0x08000;
+
+pub const CBAUD: ::tcflag_t = 0x0100f;
+
+pub const B0: ::speed_t = 0x00000;
+pub const B50: ::speed_t = 0x00001;
+pub const B75: ::speed_t = 0x00002;
+pub const B110: ::speed_t = 0x00003;
+pub const B134: ::speed_t = 0x00004;
+pub const B150: ::speed_t = 0x00005;
+pub const B200: ::speed_t = 0x00006;
+pub const B300: ::speed_t = 0x00007;
+pub const B600: ::speed_t = 0x00008;
+pub const B1200: ::speed_t = 0x00009;
+pub const B1800: ::speed_t = 0x0000a;
+pub const B2400: ::speed_t = 0x0000b;
+pub const B4800: ::speed_t = 0x0000c;
+pub const B9600: ::speed_t = 0x0000d;
+pub const B19200: ::speed_t = 0x0000e;
+pub const B38400: ::speed_t = 0x0000f;
+
+pub const CSIZE: ::tcflag_t = 0x00030;
+pub const CS5: ::tcflag_t = 0x00000;
+pub const CS6: ::tcflag_t = 0x00010;
+pub const CS7: ::tcflag_t = 0x00020;
+pub const CS8: ::tcflag_t = 0x00030;
+pub const CSTOPB: ::tcflag_t = 0x00040;
+pub const CREAD: ::tcflag_t = 0x00080;
+pub const PARENB: ::tcflag_t = 0x00100;
+pub const PARODD: ::tcflag_t = 0x00200;
+pub const HUPCL: ::tcflag_t = 0x00400;
+pub const CLOCAL: ::tcflag_t = 0x00800;
+
+pub const CBAUDEX: ::tcflag_t = 0x0100f;
+
+pub const B57600: ::speed_t = 0x01001;
+pub const B115200: ::speed_t = 0x01002;
+pub const B128000: ::speed_t = 0x01003;
+pub const B230400: ::speed_t = 0x01004;
+pub const B256000: ::speed_t = 0x01005;
+pub const B460800: ::speed_t = 0x01006;
+pub const B500000: ::speed_t = 0x01007;
+pub const B576000: ::speed_t = 0x01008;
+pub const B921600: ::speed_t = 0x01009;
+pub const B1000000: ::speed_t = 0x0100a;
+pub const B1152000: ::speed_t = 0x0100b;
+pub const B1500000: ::speed_t = 0x0100c;
+pub const B2000000: ::speed_t = 0x0100d;
+pub const B2500000: ::speed_t = 0x0100e;
+pub const B3000000: ::speed_t = 0x0100f;
+
+pub const CRTSCTS: ::tcflag_t = 0x08000;
+pub const CMSPAR: ::tcflag_t = 0x40000000;
+
+pub const ISIG: ::tcflag_t = 0x0001;
+pub const ICANON: ::tcflag_t = 0x0002;
+pub const ECHO: ::tcflag_t = 0x0004;
+pub const ECHOE: ::tcflag_t = 0x0008;
+pub const ECHOK: ::tcflag_t = 0x0010;
+pub const ECHONL: ::tcflag_t = 0x0020;
+pub const NOFLSH: ::tcflag_t = 0x0040;
+pub const TOSTOP: ::tcflag_t = 0x0080;
+pub const IEXTEN: ::tcflag_t = 0x0100;
+pub const FLUSHO: ::tcflag_t = 0x0200;
+pub const ECHOKE: ::tcflag_t = 0x0400;
+pub const ECHOCTL: ::tcflag_t = 0x0800;
+
+pub const VDISCARD: usize = 1;
+pub const VEOL: usize = 2;
+pub const VEOL2: usize = 3;
+pub const VEOF: usize = 4;
+pub const VERASE: usize = 5;
+pub const VINTR: usize = 6;
+pub const VKILL: usize = 7;
+pub const VLNEXT: usize = 8;
+pub const VMIN: usize = 9;
+pub const VQUIT: usize = 10;
+pub const VREPRINT: usize = 11;
+pub const VSTART: usize = 12;
+pub const VSTOP: usize = 13;
+pub const VSUSP: usize = 14;
+pub const VSWTC: usize = 15;
+pub const VTIME: usize = 16;
+pub const VWERASE: usize = 17;
+
+pub const TIOCGWINSZ: ::c_int = 0x5401;
+pub const TIOCSWINSZ: ::c_int = 0x5402;
+pub const TIOCLINUX: ::c_int = 0x5403;
+pub const TIOCGPGRP: ::c_int = 0x540f;
+pub const TIOCSPGRP: ::c_int = 0x5410;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
@@ -521,6 +745,8 @@ pub type stat64 = stat;
 pub type dirent64 = dirent;
 
 extern "C" {
+    /* sys/socket.h */
+
     pub fn bind(socket: ::c_int, address: *const ::sockaddr, address_len: ::socklen_t) -> ::c_int;
     pub fn recvfrom(
         socket: ::c_int,
@@ -529,5 +755,20 @@ extern "C" {
         flags: ::c_int,
         addr: *mut ::sockaddr,
         addrlen: *mut ::socklen_t,
+    ) -> ::ssize_t;
+    pub fn accept4(
+        fd: ::c_int,
+        addr: *mut ::sockaddr,
+        len: *mut ::socklen_t,
+        flg: ::c_int,
+    ) -> ::c_int;
+
+    /* linux_compat/sys/sendfile.h */
+
+    pub fn sendfile(
+        out_fd: ::c_int,
+        in_fd: ::c_int,
+        offset: *mut off_t,
+        count: ::size_t,
     ) -> ::ssize_t;
 }

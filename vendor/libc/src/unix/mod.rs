@@ -227,7 +227,10 @@ pub const S_ISGID: ::mode_t = 0x400;
 pub const S_ISVTX: ::mode_t = 0x200;
 
 cfg_if! {
-    if #[cfg(not(any(target_os = "haiku", target_os = "illumos",
+    if #[cfg(target_os = "cygwin")] {
+        pub const IFNAMSIZ: ::size_t = 44;
+        pub const IF_NAMESIZE: ::size_t = IFNAMSIZ;
+    } else if #[cfg(not(any(target_os = "haiku", target_os = "illumos",
                      target_os = "solaris")))] {
         pub const IF_NAMESIZE: ::size_t = 16;
         pub const IFNAMSIZ: ::size_t = IF_NAMESIZE;
