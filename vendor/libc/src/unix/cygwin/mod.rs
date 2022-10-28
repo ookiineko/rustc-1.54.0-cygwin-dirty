@@ -1088,6 +1088,17 @@ pub const POLLRDBAND: ::c_short = POLLPRI;
 pub const POLLWRNORM: ::c_short = POLLOUT;
 pub const POLLWRBAND: ::c_short = POLLOUT;
 
+/* netinet/tcp.h */
+
+pub const TCP_NODELAY: ::c_int = 1;
+pub const TCP_KEEPIDLE: ::c_int = 3;
+pub const TCP_MAXSEG: ::c_int = 4;
+pub const TCP_QUICKACK: ::c_int = 12;
+pub const TCP_USER_TIMEOUT: ::c_int = 14;
+pub const TCP_FASTOPEN: ::c_int = 15;
+pub const TCP_KEEPCNT: ::c_int = 16;
+pub const TCP_KEEPINTVL: ::c_int = 17;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
