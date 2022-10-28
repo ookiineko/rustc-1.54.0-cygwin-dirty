@@ -221,6 +221,10 @@ pub const SOPRI_BACKGROUND: ::c_int = 2;
 pub const SOCK_NONBLOCK: ::c_int = 0x01000000;
 pub const SOCK_CLOEXEC: ::c_int = 0x02000000;
 
+/* stdlib.h */
+pub const EXIT_FAILURE: ::c_int = 1;
+pub const EXIT_SUCCESS: ::c_int = 0;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
