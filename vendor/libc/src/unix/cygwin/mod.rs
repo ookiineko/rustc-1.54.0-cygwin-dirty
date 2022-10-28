@@ -31,7 +31,7 @@ pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
 const ULONG_SIZE: usize = 64;
 pub const FD_SETSIZE: usize = 64;
-pub const RAND_MAX: c_int = 0x7fffffff;
+pub const RAND_MAX: ::c_int = 0x7fffffff;
 pub const FILENAME_MAX: ::c_uint = 4096;
 
 /* netdb.h */
