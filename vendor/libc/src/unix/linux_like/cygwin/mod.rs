@@ -111,6 +111,10 @@ s! {
     pub struct pthread_mutexattr_t {
         __dummy: ::c_char,
     }
+
+    pub struct pthread_rwlockattr_t {
+        __dummy: ::c_char,
+    }
 }
 
 pub type statfs64 = statfs;
