@@ -25,6 +25,7 @@ pub type speed_t = ::c_uint;
 pub type sigset_t = ::c_ulong;
 pub type nfds_t = ::c_uint;
 pub type sa_family_t = u16;
+pub type clockid_t = ::c_ulong;
 
 pub const O_CLOEXEC: ::c_int = 0o1000000;
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
