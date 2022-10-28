@@ -10,7 +10,7 @@ pub type suseconds_t = ::c_long;
 pub type rlim_t = c_ulong;
 pub type mode_t = u32;
 pub type socklen_t = ::c_int;
-pub type pthread_t = ::c_char;
+pub type pthread_t = ::c_char;  // __dummy
 
 s! {
     pub struct msghdr {
@@ -30,7 +30,11 @@ s! {
     }
 
     pub struct sem_t {
-        __val: [::c_char],
+        __dummy: [::c_char],
+    }
+
+    pub struct pthread_attr_t {
+        __dummy: [::c_char],
     }
 }
 
