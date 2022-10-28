@@ -1205,7 +1205,7 @@ cfg_if! {
     }
 }
 cfg_if! {
-    if #[cfg(not(target_os = "emscripten"))] {
+    if #[cfg(not(any(target_os = "emscripten", target_os = "cygwin")))] {
         pub const P_PIDFD: idtype_t = 3;
     }
 }
