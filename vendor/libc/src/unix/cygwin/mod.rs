@@ -1392,7 +1392,7 @@ s_no_extra_traits! {
         pub r14: u64,
         pub r15: u64,
         pub rip: u64,
-        pub fpregs: ::_libc_fpstate,
+        pub fpregs: _libc_fpstate,
         pub vregs: [u64; 52],
         pub vcx: u64,
         pub dbc: u64,
