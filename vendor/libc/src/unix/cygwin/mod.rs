@@ -31,6 +31,8 @@ pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
 const ULONG_SIZE: usize = 64;
 pub const FD_SETSIZE: usize = 64;
+pub const RAND_MAX: c_int = 0x7fffffff;
+pub const FILENAME_MAX: ::c_uint = 4096;
 
 /* netdb.h */
 
@@ -258,6 +260,19 @@ pub const UTIME_OMIT: c_long = -1;
 /* stdlib.h */
 pub const EXIT_FAILURE: ::c_int = 1;
 pub const EXIT_SUCCESS: ::c_int = 0;
+
+/* sys/unistd.h */
+
+pub const F_OK: ::c_int = 0;
+pub const R_OK: ::c_int = 4;
+pub const W_OK: ::c_int = 2;
+pub const X_OK: ::c_int = 1;
+pub const SEEK_SET: ::c_int = 0;
+pub const SEEK_CUR: ::c_int = 1;
+pub const SEEK_END: ::c_int = 2;
+pub const STDIN_FILENO: ::c_int = 0;
+pub const STDOUT_FILENO: ::c_int = 1;
+pub const STDERR_FILENO: ::c_int = 2;
 
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
