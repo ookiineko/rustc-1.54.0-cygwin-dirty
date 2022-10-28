@@ -1783,6 +1783,10 @@ extern "C" {
         info: *mut siginfo_t,
         timeout: *const ::timespec,
     ) -> ::c_int;
+
+    /* sys/ioctl.h */
+
+    pub fn ioctl(fd: ::c_int, request: ::c_int, ...) -> ::c_int;
 }
 
 /* cygwin/socket.h */
