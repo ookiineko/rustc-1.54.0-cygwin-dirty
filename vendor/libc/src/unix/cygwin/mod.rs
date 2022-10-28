@@ -2005,6 +2005,6 @@ safe_f! {
     }
 
     pub {const} fn WCOREDUMP(status: ::c_int) -> bool {
-        WIFSIGNALED(status) && (status & 0x80)
+        (WIFSIGNALED(status) && (status & 0x80)) as bool
     }
 }
