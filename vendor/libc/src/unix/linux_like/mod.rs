@@ -1682,9 +1682,6 @@ cfg_if! {
     } else if #[cfg(target_os = "linux")] {
         mod linux;
         pub use self::linux::*;
-    } else if #[cfg(target_os = "cygwin")] {
-        mod cygwin;
-        pub use self::cygwin::*;
     } else if #[cfg(target_os = "l4re")] {
         mod linux;
         pub use self::linux::*;

@@ -70,6 +70,154 @@ pub const EAI_PROTOCOL: ::c_int = 13;
 pub const EAI_OVERFLOW: ::c_int = 14;
 pub const EAI_IDN_ENCODE: ::c_int = 15;
 
+/* cygwin/socket.h */
+
+pub const SCM_RIGHTS: ::c_int = 0x01;
+pub const SCM_CREDENTIALS: ::c_int = 0x02;
+
+pub const SOCK_STREAM: ::c_int = 1;
+pub const SOCK_DGRAM: ::c_int = 2;
+pub const SOCK_RAW: ::c_int = 3;
+pub const SOCK_RDM: ::c_int = 4;
+pub const SOCK_SEQPACKET: ::c_int = 5;
+
+pub const AF_UNSPEC: ::c_int = 0;
+pub const AF_UNIX: ::c_int = 1;
+pub const AF_LOCAL: ::c_int = 1;
+pub const AF_INET: ::c_int = 2;
+pub const AF_IMPLINK: ::c_int = 3;
+pub const AF_PUP: ::c_int = 4;
+pub const AF_CHAOS: ::c_int = 5;
+pub const AF_NS: ::c_int = 6;
+pub const AF_ISO: ::c_int = 7;
+pub const AF_OSI: ::c_int = AF_ISO;
+pub const AF_ECMA: ::c_int = 8;
+pub const AF_DATAKIT: ::c_int = 9;
+pub const AF_CCITT: ::c_int = 10;
+pub const AF_SNA: ::c_int = 11;
+pub const AF_DECnet: ::c_int = 12;
+pub const AF_DLI: ::c_int = 13;
+pub const AF_LAT: ::c_int = 14;
+pub const AF_HYLINK: ::c_int = 15;
+pub const AF_APPLETALK: ::c_int = 16;
+pub const AF_NETBIOS: ::c_int = 17;
+pub const AF_INET6: ::c_int = 23;
+pub const AF_MAX: ::c_int = 32;
+
+pub const PF_UNSPEC: ::c_int = AF_UNSPEC;
+pub const PF_UNIX: ::c_int = AF_UNIX;
+pub const PF_LOCAL: ::c_int = AF_LOCAL;
+pub const PF_INET: ::c_int = AF_INET;
+pub const PF_IMPLINK: ::c_int = AF_IMPLINK;
+pub const PF_PUP: ::c_int = AF_PUP;
+pub const PF_CHAOS: ::c_int = AF_CHAOS;
+pub const PF_NS: ::c_int = AF_NS;
+pub const PF_ISO: ::c_int = AF_ISO;
+pub const PF_OSI: ::c_int = AF_OSI;
+pub const PF_ECMA: ::c_int = AF_ECMA;
+pub const PF_DATAKIT: ::c_int = AF_DATAKIT;
+pub const PF_CCITT: ::c_int = AF_CCITT;
+pub const PF_SNA: ::c_int = AF_SNA;
+pub const PF_DECnet: ::c_int = AF_DECnet;
+pub const PF_DLI: ::c_int = AF_DLI;
+pub const PF_LAT: ::c_int = AF_LAT;
+pub const PF_HYLINK: ::c_int = AF_HYLINK;
+pub const PF_APPLETALK: ::c_int = AF_APPLETALK;
+pub const PF_NETBIOS: ::c_int = AF_NETBIOS;
+pub const PF_INET6: ::c_int = AF_INET6;
+pub const PF_MAX: ::c_int = AF_MAX;
+
+pub const SOMAXCONN: ::c_int = 0x7fffffff;
+
+pub const MSG_OOB: ::c_int = 0x1;
+pub const MSG_PEEK: ::c_int = 0x2;
+pub const MSG_DONTROUTE: ::c_int = 0x4;
+pub const MSG_WAITALL: ::c_int = 0x8;
+pub const MSG_DONTWAIT: ::c_int = 0x10;
+pub const MSG_NOSIGNAL: ::c_int = 0x20;
+pub const MSG_TRUNC: ::c_int = 0x0100;
+pub const MSG_CTRUNC: ::c_int = 0x0200;
+pub const MSG_BCAST: ::c_int = 0x0400;
+pub const MSG_MCAST: ::c_int = 0x0800;
+pub const MSG_CMSG_CLOEXEC: ::c_int = 0x1000;
+pub const MSG_EOR: ::c_int = 0x8000;
+
+pub const SOL_IP: ::c_int = 0;
+pub const SOL_IPV6: ::c_int = 41;
+pub const SOL_IPX: ::c_int = 256;
+pub const SOL_AX25: ::c_int = 257;
+pub const SOL_ATALK: ::c_int = 258;
+pub const SOL_NETROM: ::c_int = 259;
+pub const SOL_TCP: ::c_int = 6;
+pub const SOL_UDP: ::c_int = 17;
+
+pub const IPTOS_LOWDELAY: ::c_int = 0x10;
+pub const IPTOS_THROUGHPUT: ::c_int = 0x08;
+pub const IPTOS_RELIABILITY: ::c_int = 0x04;
+
+pub const IP_DEFAULT_MULTICAST_TTL: ::c_int = 1;
+pub const IP_DEFAULT_MULTICAST_LOOP: ::c_int = 1;
+pub const IP_MAX_MEMBERSHIPS: ::c_int = 20;
+
+pub const IP_OPTIONS: ::c_int = 1;
+pub const IP_HDRINCL: ::c_int = 2;
+pub const IP_TOS: ::c_int = 3;
+pub const IP_TTL: ::c_int = 4;
+pub const IP_MULTICAST_IF: ::c_int = 9;
+pub const IP_MULTICAST_TTL: ::c_int = 10;
+pub const IP_MULTICAST_LOOP: ::c_int = 11;
+pub const IP_ADD_MEMBERSHIP: ::c_int = 12;
+pub const IP_DROP_MEMBERSHIP: ::c_int = 13;
+pub const IP_DONTFRAGMENT: ::c_int = 14;
+pub const IP_ADD_SOURCE_MEMBERSHIP: ::c_int = 15;
+pub const IP_DROP_SOURCE_MEMBERSHIP: ::c_int = 16;
+pub const IP_BLOCK_SOURCE: ::c_int = 17;
+pub const IP_UNBLOCK_SOURCE: ::c_int = 18;
+pub const IP_PKTINFO: ::c_int = 19;
+pub const IP_UNICAST_IF: ::c_int = 31;
+
+pub const IPV6_HOPOPTS: ::c_int = 1;
+pub const IPV6_UNICAST_HOPS: ::c_int = 4;
+pub const IPV6_MULTICAST_IF: ::c_int = 9;
+pub const IPV6_MULTICAST_HOPS: ::c_int = 10;
+pub const IPV6_MULTICAST_LOOP: ::c_int = 11;
+pub const IPV6_ADD_MEMBERSHIP: ::c_int = 12;
+pub const IPV6_DROP_MEMBERSHIP: ::c_int = 13;
+pub const IPV6_JOIN_GROUP: ::c_int = IPV6_ADD_MEMBERSHIP;
+pub const IPV6_LEAVE_GROUP: ::c_int = IPV6_DROP_MEMBERSHIP;
+pub const IPV6_DONTFRAG: ::c_int = 14;
+pub const IPV6_PKTINFO: ::c_int = 19;
+pub const IPV6_HOPLIMIT: ::c_int = 21;
+pub const IPV6_CHECKSUM: ::c_int = 26;
+pub const IPV6_V6ONLY: ::c_int = 27;
+pub const IPV6_UNICAST_IF: ::c_int = 31;
+pub const IPV6_RTHDR: ::c_int = 32;
+pub const IPV6_RECVRTHDR: ::c_int = 38;
+pub const IPV6_TCLASS: ::c_int = 39;
+pub const IPV6_RECVTCLASS: ::c_int = 40;
+
+pub const MCAST_JOIN_GROUP: ::c_int = 41;
+pub const MCAST_LEAVE_GROUP: ::c_int = 42;
+pub const MCAST_BLOCK_SOURCE: ::c_int = 43;
+pub const MCAST_UNBLOCK_SOURCE: ::c_int = 44;
+pub const MCAST_JOIN_SOURCE_GROUP: ::c_int = 45;
+pub const MCAST_LEAVE_SOURCE_GROUP: ::c_int = 46;
+pub const MCAST_INCLUDE: ::c_int = 0;
+pub const MCAST_EXCLUDE: ::c_int = 1;
+
+pub const SHUT_RD: ::c_int = 0;
+pub const SHUT_WR: ::c_int = 1;
+pub const SHUT_RDWR: ::c_int = 2;
+
+pub const SOPRI_INTERACTIVE: ::c_int = 0;
+pub const SOPRI_NORMAL: ::c_int = 1;
+pub const SOPRI_BACKGROUND: ::c_int = 2;
+
+/* cygwin/_socketflags.h */
+
+pub const SOCK_NONBLOCK: ::c_int = 0x01000000;
+pub const SOCK_CLOEXEC: ::c_int = 0x02000000;
+
 s! {
     pub struct msghdr {
         pub msg_name: *mut ::c_void,
