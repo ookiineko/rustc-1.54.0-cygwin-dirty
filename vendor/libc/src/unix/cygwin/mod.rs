@@ -369,6 +369,13 @@ s! {
         pub sun_path: [::c_char; 108]
     }
 
+    pub struct sockaddr_storage {
+        pub ss_family: sa_family_t,
+        __ss_pad1: [::c_char; 6],
+        __ss_align: i64,
+        __ss_pad2: [::c_char; 128 - 2 * 8],
+    }
+
     pub struct msghdr {
         pub msg_name: *mut ::c_void,
         pub msg_namelen: ::socklen_t,
