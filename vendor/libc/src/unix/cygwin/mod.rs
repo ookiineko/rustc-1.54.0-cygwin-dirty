@@ -1875,8 +1875,10 @@ extern "C" {
     #[link_name = "fstat"]
     pub fn fstat64(fildes: ::c_int, buf: *mut stat64) -> ::c_int;
     pub fn stat(path: *const c_char, buf: *mut stat) -> ::c_int;
+    #[link_name = "stat"]
     pub fn stat64(path: *const c_char, buf: *mut stat64) -> ::c_int;
     pub fn lstat(path: *const c_char, buf: *mut stat) -> ::c_int;
+    #[link_name = "lstat"]
     pub fn lstat64(path: *const c_char, buf: *mut stat64) -> ::c_int;
     pub fn fstatat(
         dirfd: ::c_int,
@@ -2162,6 +2164,7 @@ extern "C" {
         entry: *mut ::dirent,
         result: *mut *mut ::dirent,
     ) -> ::c_int;
+    #[link_name = "readdir_r"]
     pub fn readdir64_r(
         dirp: *mut ::DIR,
         entry: *mut ::dirent64,
