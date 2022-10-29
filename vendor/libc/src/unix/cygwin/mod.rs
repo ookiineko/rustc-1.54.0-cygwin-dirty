@@ -470,8 +470,8 @@ pub const IFF_DORMANT: ::c_int = 0x20000;
 
 /* asm/socket.h */
 
-pub const FIONREAD: ::c_ulong = 0x4008667f;
-pub const FIONBIO: ::c_ulong = 0x8004667e;
+pub const FIONREAD: ::c_int = 0x4008667f;
+pub const FIONBIO: ::c_int = 0x8004667e;
 pub const SIOCGIFCONF: ::c_ulong = 0x80107364;
 pub const SIOCGIFFLAGS: ::c_ulong = 0x80507365;
 pub const SIOCGIFADDR: ::c_ulong = 0x80507366;
