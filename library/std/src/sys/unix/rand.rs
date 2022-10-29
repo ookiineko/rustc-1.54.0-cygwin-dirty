@@ -17,6 +17,7 @@ pub fn hashmap_random_keys() -> (u64, u64) {
     not(target_os = "openbsd"),
     not(target_os = "freebsd"),
     not(target_os = "netbsd"),
+    not(target_os = "cygwin"),
     not(target_os = "fuchsia"),
     not(target_os = "redox"),
     not(target_os = "vxworks")
@@ -25,7 +26,7 @@ mod imp {
     use crate::fs::File;
     use crate::io::Read;
 
-    #[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "android"))]
+    #[cfg(any(target_os = "linux", target_os = "android"))]
     fn getrandom(buf: &mut [u8]) -> libc::ssize_t {
         // A weak symbol allows interposition, e.g. for perf measurements that want to
         // disable randomness for consistency. Otherwise, we'll try a raw syscall.
@@ -41,12 +42,12 @@ mod imp {
         unsafe { getrandom(buf.as_mut_ptr().cast(), buf.len(), libc::GRND_NONBLOCK) }
     }
 
-    #[cfg(not(any(target_os = "linux", target_os = "cygwin", target_os = "android")))]
+    #[cfg(not(any(target_os = "linux", target_os = "android")))]
     fn getrandom_fill_bytes(_buf: &mut [u8]) -> bool {
         false
     }
 
-    #[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "android"))]
+    #[cfg(any(target_os = "linux", target_os = "android"))]
     fn getrandom_fill_bytes(v: &mut [u8]) -> bool {
         use crate::sync::atomic::{AtomicBool, Ordering};
         use crate::sys::os::errno;
@@ -139,7 +140,7 @@ mod imp {
     }
 }
 
-#[cfg(target_os = "openbsd")]
+#[cfg(any(target_os = "openbsd", target_os = "cygwin"))]
 mod imp {
     use crate::sys::os::errno;
 
