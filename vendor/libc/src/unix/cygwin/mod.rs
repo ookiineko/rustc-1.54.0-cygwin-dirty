@@ -1105,6 +1105,12 @@ pub const WNOHANG: ::c_int = 0x00000001;
 pub const WUNTRACED: ::c_int = 0x00000002;
 pub const WCONTINUED: ::c_int = 0x00000008;
 
+/* limits.h */
+
+pub const PTHREAD_STACK_MIN: ::size_t = 65536;
+pub const PATH_MAX: ::c_int = 4096;
+pub const PIPE_BUF: usize = 4096;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
