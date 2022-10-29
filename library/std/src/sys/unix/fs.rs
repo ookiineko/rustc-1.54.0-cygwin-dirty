@@ -586,6 +586,7 @@ impl DirEntry {
         target_os = "macos",
         target_os = "ios",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "emscripten",
         target_os = "android",
         target_os = "solaris",
