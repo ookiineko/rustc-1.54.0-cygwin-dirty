@@ -653,6 +653,12 @@ pub trait MetadataExt {
     #[cfg(target_os = "vxworks")]
     #[stable(feature = "metadata_ext", since = "1.1.0")]
     fn attrib(&self) -> u8;
+    #[cfg(target_os = "cygwin")]
+    #[stable(feature = "metadata_ext", since = "1.1.0")]
+    fn birthtim(&self) -> i64;
+    #[cfg(target_os = "cygwin")]
+    #[stable(feature = "metadata_ext", since = "1.1.0")]
+    fn birthtim_nsec(&self) -> i64;
 }
 
 #[stable(feature = "metadata_ext", since = "1.1.0")]
@@ -708,6 +714,14 @@ impl MetadataExt for fs::Metadata {
     #[cfg(target_os = "vxworks")]
     fn attrib(&self) -> u8 {
         self.st_attrib()
+    }
+    #[cfg(target_os = "cygwin")]
+    fn birthtim(&self) -> i64 {
+        self.st_birthtim()
+    }
+    #[cfg(target_os = "cygwin")]
+    fn birthtim_nsec(&self) -> i64 {
+        self.st_birthtim_nsec()
     }
 }
 
