@@ -33,7 +33,7 @@ pub(super) fn recv_vectored_with_ancillary_from(
         msg.msg_namelen = size_of::<libc::sockaddr_un>() as libc::socklen_t;
         msg.msg_iov = bufs.as_mut_ptr().cast();
         cfg_if::cfg_if! {
-            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu"), target_os = "cygwin"))] {
+            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu")))] {
                 msg.msg_iovlen = bufs.len() as libc::size_t;
                 msg.msg_controllen = ancillary.buffer.len() as libc::size_t;
             } else if #[cfg(any(
@@ -41,6 +41,7 @@ pub(super) fn recv_vectored_with_ancillary_from(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
+                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
