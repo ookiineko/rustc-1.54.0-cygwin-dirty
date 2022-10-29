@@ -1872,6 +1872,7 @@ extern "C" {
     /* sys/stat.h */
 
     pub fn fstat(fildes: ::c_int, buf: *mut stat) -> ::c_int;
+    #[link_name = "fstat"]
     pub fn fstat64(fildes: ::c_int, buf: *mut stat64) -> ::c_int;
     pub fn stat(path: *const c_char, buf: *mut stat) -> ::c_int;
     pub fn stat64(path: *const c_char, buf: *mut stat64) -> ::c_int;
@@ -1883,6 +1884,7 @@ extern "C" {
         buf: *mut stat,
         flags: ::c_int,
     ) -> ::c_int;
+    #[link_name = "fstatat"]
     pub fn fstatat64(
         dirfd: ::c_int,
         pathname: *const c_char,
@@ -1950,9 +1952,11 @@ extern "C" {
     pub fn fdatasync(fd: ::c_int) -> ::c_int;
     pub fn getdomainname(name: *mut ::c_char, len: ::size_t) -> ::c_int;
     pub fn lseek(fd: ::c_int, offset: off_t, whence: ::c_int) -> off_t;
+    #[link_name = "lseek"]
     pub fn lseek64(fd: ::c_int, offset: off64_t, whence: ::c_int) -> off64_t;
     pub fn pipe2(fds: *mut ::c_int, flags: ::c_int) -> ::c_int;
     pub fn pread(fd: ::c_int, buf: *mut ::c_void, count: ::size_t, offset: off_t) -> ::ssize_t;
+    #[link_name = "pread"]
     pub fn pread64(fd: ::c_int, buf: *mut ::c_void, count: ::size_t, offset: off64_t) -> ::ssize_t;
     pub fn pwrite(
         fd: ::c_int,
@@ -1960,6 +1964,7 @@ extern "C" {
         count: ::size_t,
         offset: off_t,
     ) -> ::ssize_t;
+    #[link_name = "pwrite"]
     pub fn pwrite64(
         fd: ::c_int,
         buf: *const ::c_void,
@@ -1974,6 +1979,7 @@ extern "C" {
     pub fn vhangup() -> ::c_int;
     pub fn vfork() -> ::pid_t;
     pub fn ftruncate(fd: ::c_int, length: off_t) -> ::c_int;
+    #[link_name = "ftruncate"]
     pub fn ftruncate64(fd: ::c_int, length: off64_t) -> ::c_int;
     pub fn sync();
 
@@ -1985,6 +1991,7 @@ extern "C" {
     /* cygwin/time.h */
 
     pub fn timegm(tm: *const ::tm) -> ::time_t;
+    #[link_name = "timegm"]
     pub fn timegm64(tm: *const ::tm) -> ::time64_t;
 
     /* time.h */
@@ -2033,6 +2040,7 @@ extern "C" {
         fd: ::c_int,
         offset: off_t,
     ) -> *mut ::c_void;
+    #[link_name = "mmap"]
     pub fn mmap64(
         addr: *mut ::c_void,
         len: ::size_t,
@@ -2064,13 +2072,16 @@ extern "C" {
     /* sys/vfs.h */
 
     pub fn statfs(path: *const ::c_char, buf: *mut statfs) -> ::c_int;
+    #[link_name = "statfs"]
     pub fn statfs64(path: *const ::c_char, buf: *mut statfs64) -> ::c_int;
     pub fn fstatfs(fd: ::c_int, buf: *mut statfs) -> ::c_int;
+    #[link_name = "fstatfs"]
     pub fn fstatfs64(fd: ::c_int, buf: *mut statfs64) -> ::c_int;
 
     /* sys/statvfs.h */
 
     pub fn statvfs(path: *const ::c_char, buf: *mut statvfs) -> ::c_int;
+    #[link_name = "statvfs"]
     pub fn statvfs64(path: *const ::c_char, buf: *mut statvfs64) -> ::c_int;
 
     /* pwd.h */
@@ -2117,15 +2128,19 @@ extern "C" {
     /* sys/_default_fcntl.h */
 
     pub fn open(path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
+    #[link_name = "open"]
     pub fn open64(path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
     pub fn openat(fd: ::c_int, path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
+    #[link_name = "openat"]
     pub fn openat64(fd: ::c_int, path: *const c_char, oflag: ::c_int, ...) -> ::c_int;
     pub fn creat(path: *const c_char, mode: mode_t) -> ::c_int;
+    #[link_name = "creat"]
     pub fn creat64(path: *const c_char, mode: mode_t) -> ::c_int;
 
     /* fcntl.h */
 
     pub fn posix_fadvise(fd: ::c_int, offset: ::off_t, len: ::off_t, advise: ::c_int) -> ::c_int;
+    #[link_name = "posix_fadvise"]
     pub fn posix_fadvise64(
         fd: ::c_int,
         offset: ::off64_t,
@@ -2133,12 +2148,14 @@ extern "C" {
         advise: ::c_int,
     ) -> ::c_int;
     pub fn posix_fallocate(fd: ::c_int, offset: ::off_t, len: ::off_t) -> ::c_int;
+    #[link_name = "posix_fallocate"]
     pub fn posix_fallocate64(fd: ::c_int, offset: ::off64_t, len: ::off64_t) -> ::c_int;
 
     /* dirent.h */
 
     pub fn dirfd(dirp: *mut ::DIR) -> ::c_int;
     pub fn readdir(dirp: *mut ::DIR) -> *mut ::dirent;
+    #[link_name = "readdir"]
     pub fn readdir64(dirp: *mut ::DIR) -> *mut ::dirent64;
     pub fn readdir_r(
         dirp: *mut ::DIR,
