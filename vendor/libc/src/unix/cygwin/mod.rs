@@ -27,6 +27,7 @@ pub type sigset_t = ::c_ulong;
 pub type nfds_t = ::c_uint;
 pub type sa_family_t = u16;
 pub type clockid_t = ::c_ulong;
+pub type pthread_key_t = ::c_char;
 
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
@@ -1281,10 +1282,6 @@ s! {
     /* sys/_pthreadtypes.h */
 
     pub struct pthread_mutex_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_key_t {
         __dummy: ::c_char,
     }
 
