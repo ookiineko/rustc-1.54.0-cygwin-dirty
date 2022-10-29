@@ -51,6 +51,7 @@ extern "C" {
             target_os = "netbsd",
             target_os = "openbsd",
             target_os = "android",
+            target_os = "cygwin",
             target_os = "redox",
             target_env = "newlib"
         ),

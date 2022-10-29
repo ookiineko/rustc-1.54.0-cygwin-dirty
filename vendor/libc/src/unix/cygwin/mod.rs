@@ -1846,7 +1846,7 @@ extern "C" {
 
     /* linux_compat/sys/errno.h */
 
-    pub fn __errno_location() -> *mut ::c_int;
+    pub fn __errno() -> *mut ::c_int;
 
     /* semaphore.h */
 

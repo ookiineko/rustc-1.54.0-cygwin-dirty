@@ -27,7 +27,7 @@ fn errno() -> libc::c_int {
     unsafe {
         *libc::__errno_location()
     }
-    #[cfg(target_os = "android")]
+    #[cfg(any(target_os = "android", target_os = "cygwin"))]
     unsafe {
         *libc::__errno()
     }
