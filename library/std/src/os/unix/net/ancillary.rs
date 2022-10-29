@@ -33,7 +33,7 @@ pub(super) fn recv_vectored_with_ancillary_from(
         msg.msg_namelen = size_of::<libc::sockaddr_un>() as libc::socklen_t;
         msg.msg_iov = bufs.as_mut_ptr().cast();
         cfg_if::cfg_if! {
-            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu")))] {
+            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu"), target_os = "cygwin"))] {
                 msg.msg_iovlen = bufs.len() as libc::size_t;
                 msg.msg_controllen = ancillary.buffer.len() as libc::size_t;
             } else if #[cfg(any(
@@ -41,7 +41,6 @@ pub(super) fn recv_vectored_with_ancillary_from(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
-                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -82,7 +81,7 @@ pub(super) fn send_vectored_with_ancillary_to(
         msg.msg_namelen = msg_namelen;
         msg.msg_iov = bufs.as_ptr() as *mut _;
         cfg_if::cfg_if! {
-            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu")))] {
+            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu"), target_os = "cygwin"))] {
                 msg.msg_iovlen = bufs.len() as libc::size_t;
                 msg.msg_controllen = ancillary.length as libc::size_t;
             } else if #[cfg(any(
@@ -90,7 +89,6 @@ pub(super) fn send_vectored_with_ancillary_to(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
-                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -147,14 +145,13 @@ fn add_to_ancillary_data<T>(
         let mut msg: libc::msghdr = zeroed();
         msg.msg_control = buffer.as_mut_ptr().cast();
         cfg_if::cfg_if! {
-            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu")))] {
+            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu"), target_os = "cygwin"))] {
                 msg.msg_controllen = *length as libc::size_t;
             } else if #[cfg(any(
                           target_os = "dragonfly",
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
-                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -184,14 +181,13 @@ fn add_to_ancillary_data<T>(
         (*previous_cmsg).cmsg_level = cmsg_level;
         (*previous_cmsg).cmsg_type = cmsg_type;
         cfg_if::cfg_if! {
-            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu")))] {
+            if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu"), target_os = "cygwin"))] {
                 (*previous_cmsg).cmsg_len = libc::CMSG_LEN(source_len) as libc::size_t;
             } else if #[cfg(any(
                           target_os = "dragonfly",
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
-                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -373,6 +369,7 @@ impl<'a> AncillaryData<'a> {
                         target_os = "android",
                         all(target_os = "linux", target_env = "gnu"),
                         all(target_os = "linux", target_env = "uclibc"),
+                        target_os = "cygwin",
                    ))] {
                     let cmsg_len_zero = libc::CMSG_LEN(0) as libc::size_t;
                 } else if #[cfg(any(
@@ -380,7 +377,6 @@ impl<'a> AncillaryData<'a> {
                               target_os = "emscripten",
                               target_os = "freebsd",
                               all(target_os = "linux", target_env = "musl",),
-                              target_os = "cygwin",
                               target_os = "macos",
                               target_os = "netbsd",
                               target_os = "openbsd",
@@ -425,14 +421,13 @@ impl<'a> Iterator for Messages<'a> {
             let mut msg: libc::msghdr = zeroed();
             msg.msg_control = self.buffer.as_ptr() as *mut _;
             cfg_if::cfg_if! {
-                if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu")))] {
+                if #[cfg(any(target_os = "android", all(target_os = "linux", target_env = "gnu"), target_os = "cygwin"))] {
                     msg.msg_controllen = self.buffer.len() as libc::size_t;
                 } else if #[cfg(any(
                               target_os = "dragonfly",
                               target_os = "emscripten",
                               target_os = "freebsd",
                               all(target_os = "linux", target_env = "musl",),
-                              target_os = "cygwin",
                               target_os = "macos",
                               target_os = "netbsd",
                               target_os = "openbsd",
