@@ -36,22 +36,22 @@ pub type posix_spawn_file_actions_t = *mut ::c_void;
 
 /* elf.h */
 
-pub type Elf32_Half = uint16_t;
-pub type Elf64_Half = uint16_t;
-pub type Elf32_Word = uint32_t;
-pub type Elf32_Sword = int32_t;
-pub type Elf64_Word = uint32_t;
-pub type Elf64_Sword = int32_t;
-pub type Elf32_Xword = uint64_t;
-pub type Elf32_Sxword = int64_t;
-pub type Elf64_Xword = uint64_t;
-pub type Elf64_Sxword = int64_t;
-pub type Elf32_Addr = uint32_t;
-pub type Elf64_Addr = uint64_t;
-pub type Elf32_Off = uint32_t;
-pub type Elf64_Off = uint64_t;
-pub type Elf32_Section = uint16_t;
-pub type Elf64_Section = uint16_t;
+pub type Elf32_Half = u16;
+pub type Elf64_Half = u16;
+pub type Elf32_Word = u32;
+pub type Elf32_Sword = i32;
+pub type Elf64_Word = u32;
+pub type Elf64_Sword = i32;
+pub type Elf32_Xword = u64;
+pub type Elf32_Sxword = i64;
+pub type Elf64_Xword = u64;
+pub type Elf64_Sxword = i64;
+pub type Elf32_Addr = u32;
+pub type Elf64_Addr = u64;
+pub type Elf32_Off = u32;
+pub type Elf64_Off = u64;
+pub type Elf32_Section = u16;
+pub type Elf64_Section = u16;
 pub type Elf32_Versym = Elf32_Half;
 pub type Elf64_Versym = Elf64_Half;
 
