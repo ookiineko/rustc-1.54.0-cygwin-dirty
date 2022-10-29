@@ -62,6 +62,7 @@ mod posix {
             pub(super) const RTLD_LAZY: c_int = 0;
         } else if #[cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "android",
             target_os = "emscripten",
 
@@ -94,6 +95,7 @@ mod posix {
             pub(super) const RTLD_NOW: c_int = 1;
         } else if #[cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             all(target_os = "android", target_pointer_width = "64"),
             target_os = "emscripten",
 
@@ -133,6 +135,7 @@ mod posix {
             target_env = "uclibc",
             all(target_os = "linux", target_arch = "mips"),
             all(target_os = "linux", target_arch = "mips64"),
+            target_os = "cygwin"
         ))] {
             pub(super) const RTLD_GLOBAL: c_int = 4;
         } else if #[cfg(any(
@@ -176,6 +179,7 @@ mod posix {
             pub(super) const RTLD_LOCAL: c_int = 4;
         } else if #[cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "android",
             target_os = "emscripten",
 

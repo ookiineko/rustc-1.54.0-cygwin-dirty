@@ -28,6 +28,7 @@ pub struct TcpKeepalive {
     pub(crate) time: Option<Duration>,
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",
@@ -37,6 +38,7 @@ pub struct TcpKeepalive {
     pub(crate) interval: Option<Duration>,
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",
@@ -275,6 +277,7 @@ impl TcpSocket {
         docsrs,
         doc(cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "macos",
             target_os = "ios",
             target_os = "freebsd",
@@ -283,6 +286,7 @@ impl TcpSocket {
     )]
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",
@@ -304,6 +308,7 @@ impl TcpSocket {
         docsrs,
         doc(cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "macos",
             target_os = "ios",
             target_os = "freebsd",
@@ -312,6 +317,7 @@ impl TcpSocket {
     )]
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",
@@ -432,6 +438,7 @@ impl TcpKeepalive {
         docsrs,
         doc(cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "macos",
             target_os = "ios",
             target_os = "freebsd",
@@ -441,6 +448,7 @@ impl TcpKeepalive {
     )]
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",
@@ -463,6 +471,7 @@ impl TcpKeepalive {
         docsrs,
         doc(cfg(any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "macos",
             target_os = "ios",
             target_os = "freebsd",
@@ -471,6 +480,7 @@ impl TcpKeepalive {
     )]
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",

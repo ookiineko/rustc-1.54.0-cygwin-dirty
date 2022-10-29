@@ -60,6 +60,7 @@ type_alias! { "char.md", c_char = u8, NonZero_c_char = NonZeroU8;
             target_arch = "riscv32"
         )
     ),
+    target_is = "cygwin",
     all(target_os = "android", any(target_arch = "aarch64", target_arch = "arm")),
     all(target_os = "l4re", target_arch = "x86_64"),
     all(
@@ -102,6 +103,7 @@ type_alias! { "char.md", c_char = i8, NonZero_c_char = NonZeroI8;
             target_arch = "riscv32"
         )
     ),
+    target_is = "cygwin",
     all(target_os = "android", any(target_arch = "aarch64", target_arch = "arm")),
     all(target_os = "l4re", target_arch = "x86_64"),
     all(

@@ -14,12 +14,13 @@ use crate::sys_common::{AsInner, FromInner};
 
 use libc::{c_int, mode_t};
 
-#[cfg(any(target_os = "linux", target_os = "emscripten", target_os = "android"))]
+#[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "emscripten", target_os = "android"))]
 use libc::dirfd;
-#[cfg(any(target_os = "linux", target_os = "emscripten"))]
+#[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "emscripten"))]
 use libc::fstatat64;
 #[cfg(not(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "emscripten",
     target_os = "solaris",
     target_os = "illumos",
@@ -35,6 +36,7 @@ use libc::{
 };
 #[cfg(not(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "emscripten",
     target_os = "l4re",
     target_os = "android"
@@ -43,7 +45,7 @@ use libc::{
     dirent as dirent64, fstat as fstat64, ftruncate as ftruncate64, lseek as lseek64,
     lstat as lstat64, off_t as off64_t, open as open64, stat as stat64,
 };
-#[cfg(any(target_os = "linux", target_os = "emscripten", target_os = "l4re"))]
+#[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "emscripten", target_os = "l4re"))]
 use libc::{
     dirent64, fstat64, ftruncate64, lseek64, lstat64, off64_t, open64, readdir64_r, stat64,
 };
@@ -792,6 +794,7 @@ impl File {
         #[cfg(any(
             target_os = "freebsd",
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "android",
             target_os = "netbsd",
             target_os = "openbsd"
@@ -804,6 +807,7 @@ impl File {
             target_os = "freebsd",
             target_os = "ios",
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "macos",
             target_os = "netbsd",
             target_os = "openbsd"
@@ -922,7 +926,7 @@ impl FromInner<c_int> for File {
 
 impl fmt::Debug for File {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        #[cfg(target_os = "linux")]
+        #[cfg(any(target_os = "linux", target_os = "cygwin"))]
         fn get_path(fd: c_int) -> Option<PathBuf> {
             let mut p = PathBuf::from("/proc/self/fd");
             p.push(&fd.to_string());
@@ -959,13 +963,13 @@ impl fmt::Debug for File {
             Some(PathBuf::from(OsString::from_vec(buf)))
         }
 
-        #[cfg(not(any(target_os = "linux", target_os = "macos", target_os = "vxworks")))]
+        #[cfg(not(any(target_os = "linux", target_os = "cygwin", target_os = "macos", target_os = "vxworks")))]
         fn get_path(_fd: c_int) -> Option<PathBuf> {
             // FIXME(#24570): implement this for other Unix platforms
             None
         }
 
-        #[cfg(any(target_os = "linux", target_os = "macos", target_os = "vxworks"))]
+        #[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "macos", target_os = "vxworks"))]
         fn get_mode(fd: c_int) -> Option<(bool, bool)> {
             let mode = unsafe { libc::fcntl(fd, libc::F_GETFL) };
             if mode == -1 {
@@ -979,7 +983,7 @@ impl fmt::Debug for File {
             }
         }
 
-        #[cfg(not(any(target_os = "linux", target_os = "macos", target_os = "vxworks")))]
+        #[cfg(not(any(target_os = "linux", target_os = "cygwin", target_os = "macos", target_os = "vxworks")))]
         fn get_mode(_fd: c_int) -> Option<(bool, bool)> {
             // FIXME(#24570): implement this for other Unix platforms
             None

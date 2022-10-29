@@ -1163,6 +1163,7 @@ extern "C" {
     #[cfg_attr(
         any(
             all(target_os = "linux", not(target_env = "musl")),
+            target_os = "cygwin",
             target_os = "freebsd",
             target_os = "dragonfly",
             target_os = "haiku"

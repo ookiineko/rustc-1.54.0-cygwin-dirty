@@ -9,6 +9,7 @@ mod addr;
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 )))]
@@ -19,6 +20,7 @@ mod addr;
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -39,6 +41,7 @@ pub use self::addr::*;
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]

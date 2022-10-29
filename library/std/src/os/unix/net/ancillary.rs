@@ -41,6 +41,7 @@ pub(super) fn recv_vectored_with_ancillary_from(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
+                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -89,6 +90,7 @@ pub(super) fn send_vectored_with_ancillary_to(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
+                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -152,6 +154,7 @@ fn add_to_ancillary_data<T>(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
+                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -188,6 +191,7 @@ fn add_to_ancillary_data<T>(
                           target_os = "emscripten",
                           target_os = "freebsd",
                           all(target_os = "linux", target_env = "musl",),
+                          target_os = "cygwin",
                           target_os = "macos",
                           target_os = "netbsd",
                           target_os = "openbsd",
@@ -236,12 +240,12 @@ impl<'a, T> Iterator for AncillaryDataIter<'a, T> {
 }
 
 /// Unix credential.
-#[cfg(any(doc, target_os = "android", target_os = "linux",))]
+#[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
 #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
 #[derive(Clone)]
 pub struct SocketCred(libc::ucred);
 
-#[cfg(any(doc, target_os = "android", target_os = "linux",))]
+#[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
 impl SocketCred {
     /// Create a Unix credential struct.
     ///
@@ -306,11 +310,11 @@ impl<'a> Iterator for ScmRights<'a> {
 /// This control message contains unix credentials.
 ///
 /// The level is equal to `SOL_SOCKET` and the type is equal to `SCM_CREDENTIALS` or `SCM_CREDS`.
-#[cfg(any(doc, target_os = "android", target_os = "linux",))]
+#[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
 #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
 pub struct ScmCredentials<'a>(AncillaryDataIter<'a, libc::ucred>);
 
-#[cfg(any(doc, target_os = "android", target_os = "linux",))]
+#[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
 #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
 impl<'a> Iterator for ScmCredentials<'a> {
     type Item = SocketCred;
@@ -332,7 +336,7 @@ pub enum AncillaryError {
 #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
 pub enum AncillaryData<'a> {
     ScmRights(ScmRights<'a>),
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     ScmCredentials(ScmCredentials<'a>),
 }
 
@@ -355,7 +359,7 @@ impl<'a> AncillaryData<'a> {
     ///
     /// `data` must contain a valid control message and the control message must be type of
     /// `SOL_SOCKET` and level of `SCM_CREDENTIALS` or `SCM_CREDENTIALS`.
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     unsafe fn as_credentials(data: &'a [u8]) -> Self {
         let ancillary_data_iter = AncillaryDataIter::new(data);
         let scm_credentials = ScmCredentials(ancillary_data_iter);
@@ -376,6 +380,7 @@ impl<'a> AncillaryData<'a> {
                               target_os = "emscripten",
                               target_os = "freebsd",
                               all(target_os = "linux", target_env = "musl",),
+                              target_os = "cygwin",
                               target_os = "macos",
                               target_os = "netbsd",
                               target_os = "openbsd",
@@ -390,7 +395,7 @@ impl<'a> AncillaryData<'a> {
             match (*cmsg).cmsg_level {
                 libc::SOL_SOCKET => match (*cmsg).cmsg_type {
                     libc::SCM_RIGHTS => Ok(AncillaryData::as_rights(data)),
-                    #[cfg(any(target_os = "android", target_os = "linux",))]
+                    #[cfg(any(target_os = "android", target_os = "linux", target_os = "cygwin",))]
                     libc::SCM_CREDENTIALS => Ok(AncillaryData::as_credentials(data)),
                     cmsg_type => {
                         Err(AncillaryError::Unknown { cmsg_level: libc::SOL_SOCKET, cmsg_type })
@@ -427,6 +432,7 @@ impl<'a> Iterator for Messages<'a> {
                               target_os = "emscripten",
                               target_os = "freebsd",
                               all(target_os = "linux", target_env = "musl",),
+                              target_os = "cygwin",
                               target_os = "macos",
                               target_os = "netbsd",
                               target_os = "openbsd",
@@ -612,7 +618,7 @@ impl<'a> SocketAncillary<'a> {
     /// Technically, that means this operation adds a control message with the level `SOL_SOCKET`
     /// and type `SCM_CREDENTIALS` or `SCM_CREDS`.
     ///
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
     pub fn add_creds(&mut self, creds: &[SocketCred]) -> bool {
         self.truncated = false;

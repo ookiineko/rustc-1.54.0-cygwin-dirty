@@ -5,6 +5,7 @@
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -16,6 +17,7 @@ use super::{sockaddr_un, SocketAddr};
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -31,6 +33,7 @@ use crate::{fmt, io};
 
 #[cfg(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "android",
     target_os = "dragonfly",
     target_os = "freebsd",
@@ -41,6 +44,7 @@ use crate::{fmt, io};
 use libc::MSG_NOSIGNAL;
 #[cfg(not(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "android",
     target_os = "dragonfly",
     target_os = "freebsd",
@@ -369,6 +373,7 @@ impl UnixDatagram {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -426,6 +431,7 @@ impl UnixDatagram {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -533,6 +539,7 @@ impl UnixDatagram {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -582,6 +589,7 @@ impl UnixDatagram {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -748,8 +756,8 @@ impl UnixDatagram {
     ///
     /// # Examples
     ///
-    #[cfg_attr(any(target_os = "android", target_os = "linux"), doc = "```no_run")]
-    #[cfg_attr(not(any(target_os = "android", target_os = "linux")), doc = "```ignore")]
+    #[cfg_attr(any(target_os = "android", target_os = "linux", target_os = "cygwin"), doc = "```no_run")]
+    #[cfg_attr(not(any(target_os = "android", target_os = "linux", target_os = "cygwin")), doc = "```ignore")]
     /// #![feature(unix_socket_ancillary_data)]
     /// use std::os::unix::net::UnixDatagram;
     ///
@@ -759,7 +767,7 @@ impl UnixDatagram {
     ///     Ok(())
     /// }
     /// ```
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
     pub fn set_passcred(&self, passcred: bool) -> io::Result<()> {
         self.0.set_passcred(passcred)
@@ -771,7 +779,7 @@ impl UnixDatagram {
     /// Get the socket option `SO_PASSCRED`.
     ///
     /// [`set_passcred`]: UnixDatagram::set_passcred
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
     pub fn passcred(&self) -> io::Result<bool> {
         self.0.passcred()

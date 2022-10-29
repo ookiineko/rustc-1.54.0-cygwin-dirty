@@ -21,6 +21,7 @@ cfg_if::cfg_if! {
                         target_os = "freebsd",
                         target_os = "netbsd",
                         target_os = "openbsd",
+                        target_os = "cygwin",
                         target_os = "haiku"))] {
         mod utimensat;
         pub use self::utimensat::*;
@@ -40,7 +41,7 @@ fn to_timespec(ft: &Option<FileTime>) -> timespec {
             // https://github.com/illumos/illumos-gate/blob/master/usr/src/boot/sys/sys/stat.h#L312
             // https://svnweb.freebsd.org/base/head/sys/sys/stat.h?view=markup#l359
             const UTIME_OMIT: i64 = -2;
-        } else if #[cfg(target_os = "openbsd")] {
+        } else if #[cfg(any(target_os = "openbsd", target_os = "cygwin"))] {
             // https://github.com/openbsd/src/blob/master/sys/sys/stat.h#L189
             const UTIME_OMIT: i64 = -1;
         } else if #[cfg(target_os = "haiku")] {
@@ -108,6 +109,7 @@ pub fn from_creation_time(meta: &fs::Metadata) -> Option<FileTime> {
         ("ios", ios),
         ("macos", macos),
         ("openbsd", openbsd)
+        ("cygwin", cygwin)
     }
 
     imp(meta)

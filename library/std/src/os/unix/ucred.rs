@@ -25,7 +25,7 @@ pub struct UCred {
     pub pid: Option<pid_t>,
 }
 
-#[cfg(any(target_os = "android", target_os = "linux"))]
+#[cfg(any(target_os = "android", target_os = "cygwin", target_os = "linux"))]
 pub use self::impl_linux::peer_cred;
 
 #[cfg(any(target_os = "dragonfly", target_os = "freebsd", target_os = "openbsd"))]
@@ -34,7 +34,7 @@ pub use self::impl_bsd::peer_cred;
 #[cfg(any(target_os = "macos", target_os = "ios",))]
 pub use self::impl_mac::peer_cred;
 
-#[cfg(any(target_os = "linux", target_os = "android"))]
+#[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "android"))]
 pub mod impl_linux {
     use super::UCred;
     use crate::os::unix::io::AsRawFd;

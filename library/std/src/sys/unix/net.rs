@@ -61,6 +61,7 @@ impl Socket {
                     target_os = "freebsd",
                     target_os = "illumos",
                     target_os = "linux",
+                    target_os = "cygwin",
                     target_os = "netbsd",
                     target_os = "openbsd",
                 ))] {
@@ -98,6 +99,7 @@ impl Socket {
                     target_os = "freebsd",
                     target_os = "illumos",
                     target_os = "linux",
+                    target_os = "cygwin",
                     target_os = "netbsd",
                     target_os = "openbsd",
                 ))] {
@@ -203,6 +205,7 @@ impl Socket {
                 target_os = "freebsd",
                 target_os = "illumos",
                 target_os = "linux",
+                target_os = "cygwin",
                 target_os = "netbsd",
                 target_os = "openbsd",
             ))] {
@@ -278,6 +281,7 @@ impl Socket {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -309,6 +313,7 @@ impl Socket {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -376,12 +381,12 @@ impl Socket {
         Ok(raw != 0)
     }
 
-    #[cfg(any(target_os = "android", target_os = "linux",))]
+    #[cfg(any(target_os = "android", target_os = "linux", target_os = "cygwin",))]
     pub fn set_passcred(&self, passcred: bool) -> io::Result<()> {
         setsockopt(self, libc::SOL_SOCKET, libc::SO_PASSCRED, passcred as libc::c_int)
     }
 
-    #[cfg(any(target_os = "android", target_os = "linux",))]
+    #[cfg(any(target_os = "android", target_os = "linux", target_os = "cygwin",))]
     pub fn passcred(&self) -> io::Result<bool> {
         let passcred: libc::c_int = getsockopt(self, libc::SOL_SOCKET, libc::SO_PASSCRED)?;
         Ok(passcred != 0)

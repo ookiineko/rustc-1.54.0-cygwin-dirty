@@ -109,7 +109,7 @@ pub fn init() {
         link_section = ".init_array"
     )]
     #[cfg_attr(target_os = "macos", link_section = "__DATA,__mod_init_func")]
-    #[cfg_attr(target_os = "windows", link_section = ".CRT$XCU")]
+    #[cfg_attr(any(target_os = "windows", target_os = "cygwin"), link_section = ".CRT$XCU")]
     static INIT_CTOR: extern "C" fn() = init_inner;
 
     /// This is the body of our constructor function.

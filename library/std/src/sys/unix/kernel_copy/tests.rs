@@ -175,7 +175,7 @@ fn bench_file_to_uds_copy(b: &mut test::Bencher) {
     });
 }
 
-#[cfg(any(target_os = "linux", target_os = "android"))]
+#[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "android"))]
 #[bench]
 fn bench_socket_pipe_socket_copy(b: &mut test::Bencher) {
     use super::CopyResult;

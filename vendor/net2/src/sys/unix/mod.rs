@@ -42,7 +42,7 @@ impl Socket {
             // Linux >2.6.26 overloads the type argument to accept SOCK_CLOEXEC,
             // avoiding a race with another thread running fork/exec between
             // socket() and ioctl()
-            #[cfg(any(target_os = "linux", target_os = "android"))]
+            #[cfg(any(target_os = "linux", target_os = "cygwin", target_os = "android"))]
             match ::cvt(libc::socket(family, ty | libc::SOCK_CLOEXEC, 0)) {
                 Ok(fd) => return Ok(Socket { fd: fd }),
                 // Older versions of Linux return EINVAL; fall back to ioctl

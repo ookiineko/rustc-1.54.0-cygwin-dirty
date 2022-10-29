@@ -172,7 +172,8 @@ pub use crate::error::Error;
 // These should all provide getrandom_inner with the same signature as getrandom.
 cfg_if! {
     if #[cfg(any(target_os = "dragonfly", target_os = "emscripten",
-                 target_os = "haiku",     target_os = "redox"))] {
+                 target_os = "haiku",     target_os = "redox",
+                 target_os = "cygwin"))] {
         mod util_libc;
         #[path = "use_file.rs"] mod imp;
     } else if #[cfg(any(target_os = "android", target_os = "linux"))] {

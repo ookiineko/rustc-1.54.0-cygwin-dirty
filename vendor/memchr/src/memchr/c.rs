@@ -22,7 +22,7 @@ pub fn memchr(needle: u8, haystack: &[u8]) -> Option<usize> {
 }
 
 // memrchr is a GNU extension. We know it's available on Linux at least.
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os = "windows"))]
 pub fn memrchr(needle: u8, haystack: &[u8]) -> Option<usize> {
     // GNU's memrchr() will - unlike memchr() - error if haystack is empty.
     if haystack.is_empty() {

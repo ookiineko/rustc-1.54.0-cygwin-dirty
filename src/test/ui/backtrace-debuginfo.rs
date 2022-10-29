@@ -41,6 +41,7 @@ macro_rules! dump_and_die {
         if cfg!(any(target_os = "android",
                     all(target_os = "linux", target_arch = "arm"),
                     all(target_env = "msvc", target_arch = "x86"),
+                    target_os = "cygwin",
                     target_os = "freebsd",
                     target_os = "dragonfly",
                     target_os = "openbsd")) {

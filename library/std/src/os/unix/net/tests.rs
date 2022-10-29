@@ -7,6 +7,7 @@ use crate::io::{self, ErrorKind, IoSlice, IoSliceMut};
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -17,6 +18,7 @@ use crate::iter::FromIterator;
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -478,6 +480,7 @@ fn test_unix_datagram_peek_from() {
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -518,7 +521,7 @@ fn test_send_vectored_fds_unix_stream() {
     }
 }
 
-#[cfg(any(target_os = "android", target_os = "emscripten", target_os = "linux",))]
+#[cfg(any(target_os = "android", target_os = "emscripten", target_os = "linux", target_os = "cygwin",))]
 #[test]
 fn test_send_vectored_with_ancillary_to_unix_datagram() {
     fn getpid() -> libc::pid_t {
@@ -591,6 +594,7 @@ fn test_send_vectored_with_ancillary_to_unix_datagram() {
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]

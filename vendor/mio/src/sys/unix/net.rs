@@ -19,6 +19,7 @@ pub(crate) fn new_socket(domain: libc::c_int, socket_type: libc::c_int) -> io::R
         target_os = "freebsd",
         target_os = "illumos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]

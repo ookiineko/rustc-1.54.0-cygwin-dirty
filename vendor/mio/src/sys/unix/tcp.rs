@@ -259,6 +259,7 @@ pub(crate) fn set_keepalive_params(socket: TcpSocket, keepalive: TcpKeepalive) -
 
     #[cfg(any(
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "ios",
         target_os = "freebsd",
@@ -323,6 +324,7 @@ pub(crate) fn get_keepalive_time(socket: TcpSocket) -> io::Result<Option<Duratio
 /// https://man.openbsd.org/tcp
 #[cfg(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "macos",
     target_os = "ios",
     target_os = "freebsd",
@@ -346,6 +348,7 @@ fn set_keepalive_interval(socket: TcpSocket, interval: Duration) -> io::Result<(
 
 #[cfg(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "macos",
     target_os = "ios",
     target_os = "freebsd",
@@ -380,6 +383,7 @@ pub(crate) fn get_keepalive_interval(socket: TcpSocket) -> io::Result<Option<Dur
 /// https://man.openbsd.org/tcp
 #[cfg(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "macos",
     target_os = "ios",
     target_os = "freebsd",
@@ -399,6 +403,7 @@ fn set_keepalive_retries(socket: TcpSocket, retries: u32) -> io::Result<()> {
 
 #[cfg(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "macos",
     target_os = "ios",
     target_os = "freebsd",
@@ -439,6 +444,7 @@ pub fn accept(listener: &net::TcpListener) -> io::Result<(net::TcpStream, Socket
         target_os = "freebsd",
         target_os = "illumos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]

@@ -247,6 +247,7 @@ impl Library {
             // These targets are known to have MT-safe `dlerror`.
             if #[cfg(any(
                 target_os = "linux",
+                target_os = "cygwin",
                 target_os = "android",
                 target_os = "openbsd",
                 target_os = "macos",
@@ -429,7 +430,7 @@ impl<T> fmt::Debug for Symbol<T> {
 }
 
 // Platform specific things
-#[cfg_attr(any(target_os = "linux", target_os = "android"), link(name="dl"))]
+#[cfg_attr(any(target_os = "linux", target_os = "cygwin", target_os = "android"), link(name="dl"))]
 #[cfg_attr(any(target_os = "freebsd", target_os = "dragonfly"), link(name="c"))]
 extern {
     fn dlopen(filename: *const raw::c_char, flags: raw::c_int) -> *mut raw::c_void;

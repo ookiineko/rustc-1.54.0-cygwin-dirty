@@ -29,6 +29,32 @@ pub type sa_family_t = u16;
 pub type clockid_t = ::c_ulong;
 pub type pthread_key_t = ::c_char;
 
+/* spawn.h */
+
+pub type posix_spawnattr_t = *mut ::c_void;
+pub type posix_spawn_file_actions_t = *mut ::c_void;
+
+/* elf.h */
+
+pub type Elf32_Half = uint16_t;
+pub type Elf64_Half = uint16_t;
+pub type Elf32_Word = uint32_t;
+pub type Elf32_Sword = int32_t;
+pub type Elf64_Word = uint32_t;
+pub type Elf64_Sword = int32_t;
+pub type Elf32_Xword = uint64_t;
+pub type Elf32_Sxword = int64_t;
+pub type Elf64_Xword = uint64_t;
+pub type Elf64_Sxword = int64_t;
+pub type Elf32_Addr = uint32_t;
+pub type Elf64_Addr = uint64_t;
+pub type Elf32_Off = uint32_t;
+pub type Elf64_Off = uint64_t;
+pub type Elf32_Section = uint16_t;
+pub type Elf64_Section = uint16_t;
+pub type Elf32_Versym = Elf32_Half;
+pub type Elf64_Versym = Elf64_Half;
+
 pub const SO_TIMESTAMP: ::c_int = 0x300A;
 pub const NCCS: usize = 18;
 const ULONG_SIZE: usize = 64;
@@ -1116,6 +1142,65 @@ pub const PIPE_BUF: usize = 4096;
 
 pub const CPU_SETSIZE: ::c_int = 0x400;
 
+/* sys/random.h */
+
+pub const GRND_NONBLOCK: ::c_uint = 0x0001;
+pub const GRND_RANDOM: ::c_uint = 0x0002;
+
+/* spawn.h */
+
+pub const POSIX_SPAWN_RESETIDS: ::c_int = 0x01;
+pub const POSIX_SPAWN_SETPGROUP: ::c_int = 0x02;
+pub const POSIX_SPAWN_SETSCHEDPARAM: ::c_int = 0x04;
+pub const POSIX_SPAWN_SETSCHEDULER: ::c_int = 0x08;
+pub const POSIX_SPAWN_SETSIGDEF: ::c_int = 0x10;
+pub const POSIX_SPAWN_SETSIGMASK: ::c_int = 0x20;
+
+/* elf.h */
+
+pub const PT_NULL: u32 = 0x0;
+pub const PT_LOAD: u32 = 0x1;
+pub const PT_DYNAMIC: u32 = 0x2;
+pub const PT_INTERP: u32 = 0x3;
+pub const PT_NOTE: u32 = 0x4;
+pub const PT_SHLIB: u32 = 0x5;
+pub const PT_PHDR: u32 = 0x6;
+pub const PT_TLS: u32 = 0x7;
+pub const PT_NUM: u32 = 0x8;
+pub const PT_LOOS: u32 = 0x60000000;
+pub const PT_GNU_EH_FRAME: u32 = 0x6474e550;
+pub const PT_GNU_STACK: u32 = 0x6474e551;
+pub const PT_GNU_RELRO: u32 = 0x6474e552;
+
+pub const AT_NULL: ::c_ulong = 0;
+pub const AT_IGNORE: ::c_ulong = 1;
+pub const AT_EXECFD: ::c_ulong = 2;
+pub const AT_PHDR: ::c_ulong = 3;
+pub const AT_PHENT: ::c_ulong = 4;
+pub const AT_PHNUM: ::c_ulong = 5;
+pub const AT_PAGESZ: ::c_ulong = 6;
+pub const AT_BASE: ::c_ulong = 7;
+pub const AT_FLAGS: ::c_ulong = 8;
+pub const AT_ENTRY: ::c_ulong = 9;
+pub const AT_NOTELF: ::c_ulong = 10;
+pub const AT_UID: ::c_ulong = 11;
+pub const AT_EUID: ::c_ulong = 12;
+pub const AT_GID: ::c_ulong = 13;
+pub const AT_EGID: ::c_ulong = 14;
+pub const AT_CLKTCK: ::c_ulong = 17;
+pub const AT_PLATFORM: ::c_ulong = 15;
+pub const AT_HWCAP: ::c_ulong = 16;
+pub const AT_FPUCW: ::c_ulong = 18;
+pub const AT_DCACHEBSIZE: ::c_ulong = 19;
+pub const AT_ICACHEBSIZE: ::c_ulong = 20;
+pub const AT_UCACHEBSIZE: ::c_ulong = 21;
+pub const AT_IGNOREPPC: ::c_ulong = 22;
+pub const AT_SECURE: ::c_ulong = 23;
+pub const AT_BASE_PLATFORM: ::c_ulong = 24;
+pub const AT_RANDOM: ::c_ulong = 25;
+pub const AT_HWCAP2: ::c_ulong = 26;
+pub const AT_EXECFN: ::c_ulong = 31;
+
 // The order of fields in these structs are crucial
 // for converting between the Rust and C types.
 s! {
@@ -1536,6 +1621,122 @@ s! {
     pub struct cpu_set_t {
         bits: [u64; 16],
     }
+
+    /* cygwin/_ucred.h */
+
+    pub struct ucred {
+        pub pid: ::pid_t,
+        pub uid: ::uid_t,
+        pub gid: ::gid_t,
+    }
+
+    /* elf.h */
+
+
+
+    pub struct Elf32_Ehdr {
+        pub e_ident: [::c_uchar; 16],
+        pub e_type: Elf32_Half,
+        pub e_machine: Elf32_Half,
+        pub e_version: Elf32_Word,
+        pub e_entry: Elf32_Addr,
+        pub e_phoff: Elf32_Off,
+        pub e_shoff: Elf32_Off,
+        pub e_flags: Elf32_Word,
+        pub e_ehsize: Elf32_Half,
+        pub e_phentsize: Elf32_Half,
+        pub e_phnum: Elf32_Half,
+        pub e_shentsize: Elf32_Half,
+        pub e_shnum: Elf32_Half,
+        pub e_shstrndx: Elf32_Half,
+    }
+    pub struct Elf64_Ehdr {
+        pub e_ident: [::c_uchar; 16],
+        pub e_type: Elf64_Half,
+        pub e_machine: Elf64_Half,
+        pub e_version: Elf64_Word,
+        pub e_entry: Elf64_Addr,
+        pub e_phoff: Elf64_Off,
+        pub e_shoff: Elf64_Off,
+        pub e_flags: Elf64_Word,
+        pub e_ehsize: Elf64_Half,
+        pub e_phentsize: Elf64_Half,
+        pub e_phnum: Elf64_Half,
+        pub e_shentsize: Elf64_Half,
+        pub e_shnum: Elf64_Half,
+        pub e_shstrndx: Elf64_Half,
+    }
+    pub struct Elf32_Shdr {
+        pub sh_name: Elf32_Word,
+        pub sh_type: Elf32_Word,
+        pub sh_flags: Elf32_Word,
+        pub sh_addr: Elf32_Addr,
+        pub sh_offset: Elf32_Off,
+        pub sh_size: Elf32_Word,
+        pub sh_link: Elf32_Word,
+        pub sh_info: Elf32_Word,
+        pub sh_addralign: Elf32_Word,
+        pub sh_entsize: Elf32_Word,
+    }
+    pub struct Elf64_Shdr {
+        pub sh_name: Elf64_Word,
+        pub sh_type: Elf64_Word,
+        pub sh_flags: Elf64_Xword,
+        pub sh_addr: Elf64_Addr,
+        pub sh_offset: Elf64_Off,
+        pub sh_size: Elf64_Xword,
+        pub sh_link: Elf64_Word,
+        pub sh_info: Elf64_Word,
+        pub sh_addralign: Elf64_Xword,
+        pub sh_entsize: Elf64_Xword,
+    }
+    pub struct Elf32_Chdr {
+        pub ch_type: ::Elf32_Word,
+        pub ch_size: ::Elf32_Word,
+        pub ch_addralign: ::Elf32_Word,
+    }
+    pub struct Elf64_Chdr {
+        pub ch_type: ::Elf64_Word,
+        pub ch_reserved: ::Elf64_Word,
+        pub ch_size: ::Elf64_Xword,
+        pub ch_addralign: ::Elf64_Xword,
+    }
+    pub struct Elf32_Sym {
+        pub st_name: Elf32_Word,
+        pub st_value: Elf32_Addr,
+        pub st_size: Elf32_Word,
+        pub st_info: ::c_uchar,
+        pub st_other: ::c_uchar,
+        pub st_shndx: Elf32_Section,
+    }
+    pub struct Elf64_Sym {
+        pub st_name: Elf64_Word,
+        pub st_info: ::c_uchar,
+        pub st_other: ::c_uchar,
+        pub st_shndx: Elf64_Section,
+        pub st_value: Elf64_Addr,
+        pub st_size: Elf64_Xword,
+    }
+    pub struct Elf32_Phdr {
+        pub p_type: Elf32_Word,
+        pub p_offset: Elf32_Off,
+        pub p_vaddr: Elf32_Addr,
+        pub p_paddr: Elf32_Addr,
+        pub p_filesz: Elf32_Word,
+        pub p_memsz: Elf32_Word,
+        pub p_flags: Elf32_Word,
+        pub p_align: Elf32_Word,
+    }
+    pub struct Elf64_Phdr {
+        pub p_type: Elf64_Word,
+        pub p_flags: Elf64_Word,
+        pub p_offset: Elf64_Off,
+        pub p_vaddr: Elf64_Addr,
+        pub p_paddr: Elf64_Addr,
+        pub p_filesz: Elf64_Xword,
+        pub p_memsz: Elf64_Xword,
+        pub p_align: Elf64_Xword,
+    }
 }
 
 pub type statfs64 = statfs;
@@ -1561,6 +1762,8 @@ extern "C" {
         len: *mut ::socklen_t,
         flg: ::c_int,
     ) -> ::c_int;
+    pub fn recvmsg(fd: ::c_int, msg: *mut ::msghdr, flags: ::c_int) -> ::ssize_t;
+    pub fn sendmsg(fd: ::c_int, msg: *const ::msghdr, flags: ::c_int) -> ::ssize_t;
 
     /* linux_compat/sys/sendfile.h */
 
@@ -1931,6 +2134,107 @@ extern "C" {
     ) -> ::c_int;
     pub fn posix_fallocate(fd: ::c_int, offset: ::off_t, len: ::off_t) -> ::c_int;
     pub fn posix_fallocate64(fd: ::c_int, offset: ::off64_t, len: ::off64_t) -> ::c_int;
+
+    /* dirent.h */
+
+    pub fn dirfd(dirp: *mut ::DIR) -> ::c_int;
+    pub fn readdir(dirp: *mut ::DIR) -> *mut ::dirent;
+    pub fn readdir64(dirp: *mut ::DIR) -> *mut ::dirent64;
+    pub fn readdir_r(
+        dirp: *mut ::DIR,
+        entry: *mut ::dirent,
+        result: *mut *mut ::dirent,
+    ) -> ::c_int;
+    pub fn readdir64_r(
+        dirp: *mut ::DIR,
+        entry: *mut ::dirent64,
+        result: *mut *mut ::dirent64,
+    ) -> ::c_int;
+    pub fn seekdir(dirp: *mut ::DIR, loc: ::c_long);
+    pub fn telldir(dirp: *mut ::DIR) -> ::c_long;
+
+    /* sys/random.h */
+
+    pub fn getrandom(buf: *mut ::c_void, buflen: ::size_t, flags: ::c_uint) -> ::ssize_t;
+    pub fn getentropy(buf: *mut ::c_void, buflen: ::size_t) -> ::c_int;
+
+    /* spawn.h */
+
+    pub fn posix_spawn(
+        pid: *mut ::pid_t,
+        path: *const ::c_char,
+        file_actions: *const ::posix_spawn_file_actions_t,
+        attrp: *const ::posix_spawnattr_t,
+        argv: *const *mut ::c_char,
+        envp: *const *mut ::c_char,
+    ) -> ::c_int;
+    pub fn posix_spawnp(
+        pid: *mut ::pid_t,
+        file: *const ::c_char,
+        file_actions: *const ::posix_spawn_file_actions_t,
+        attrp: *const ::posix_spawnattr_t,
+        argv: *const *mut ::c_char,
+        envp: *const *mut ::c_char,
+    ) -> ::c_int;
+    pub fn posix_spawn_file_actions_init(actions: *mut posix_spawn_file_actions_t) -> ::c_int;
+    pub fn posix_spawn_file_actions_destroy(actions: *mut posix_spawn_file_actions_t) -> ::c_int;
+    pub fn posix_spawn_file_actions_addopen(
+        actions: *mut posix_spawn_file_actions_t,
+        fd: ::c_int,
+        path: *const ::c_char,
+        oflag: ::c_int,
+        mode: ::mode_t,
+    ) -> ::c_int;
+    pub fn posix_spawn_file_actions_adddup2(
+        actions: *mut posix_spawn_file_actions_t,
+        fd: ::c_int,
+        newfd: ::c_int,
+    ) -> ::c_int;
+    pub fn posix_spawn_file_actions_addclose(
+        actions: *mut posix_spawn_file_actions_t,
+        fd: ::c_int,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_init(attr: *mut posix_spawnattr_t) -> ::c_int;
+    pub fn posix_spawnattr_destroy(attr: *mut posix_spawnattr_t) -> ::c_int;
+    pub fn posix_spawnattr_getflags(
+        attr: *const posix_spawnattr_t,
+        flags: *mut ::c_short,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_getpgroup(
+        attr: *const posix_spawnattr_t,
+        flags: *mut ::pid_t,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_getschedparam(
+        attr: *const posix_spawnattr_t,
+        param: *mut ::sched_param,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_getschedpolicy(
+        attr: *const posix_spawnattr_t,
+        flags: *mut ::c_int,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_getsigdefault(
+        attr: *const posix_spawnattr_t,
+        default: *mut ::sigset_t,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_getsigmask(
+        attr: *const posix_spawnattr_t,
+        default: *mut ::sigset_t,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_setflags(attr: *mut posix_spawnattr_t, flags: ::c_short) -> ::c_int;
+    pub fn posix_spawnattr_setpgroup(attr: *mut posix_spawnattr_t, flags: ::pid_t) -> ::c_int;
+    pub fn posix_spawnattr_setschedparam(
+        attr: *mut posix_spawnattr_t,
+        param: *const ::sched_param,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_setschedpolicy(attr: *mut posix_spawnattr_t, flags: ::c_int) -> ::c_int;
+    pub fn posix_spawnattr_setsigdefault(
+        attr: *mut posix_spawnattr_t,
+        default: *const ::sigset_t,
+    ) -> ::c_int;
+    pub fn posix_spawnattr_setsigmask(
+        attr: *mut posix_spawnattr_t,
+        default: *const ::sigset_t,
+    ) -> ::c_int;
 }
 
 /* cygwin/socket.h */

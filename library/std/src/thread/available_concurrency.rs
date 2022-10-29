@@ -74,6 +74,7 @@ cfg_if::cfg_if! {
         target_os = "fuchsia",
         target_os = "ios",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "solaris",
         target_os = "illumos",

@@ -111,6 +111,7 @@ impl Type {
         target_os = "dragonfly",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]
@@ -129,6 +130,7 @@ impl Type {
         target_os = "dragonfly",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]

@@ -37,6 +37,7 @@ cfg_if::cfg_if! {
         target_os = "haiku",
         target_os = "ios",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "macos",
         target_os = "openbsd",
         target_os = "solaris",
@@ -138,6 +139,7 @@ cfg_if::cfg_if! {
     } else if #[cfg(all(
         any(
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "fuchsia",
             target_os = "freebsd",
             all(target_os = "android", feature = "dl_iterate_phdr"),

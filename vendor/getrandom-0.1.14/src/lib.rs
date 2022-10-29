@@ -169,8 +169,9 @@ cfg_if! {
     // Unlike the other Unix, Fuchsia and iOS don't use the libc to make any calls.
     if #[cfg(any(target_os = "android", target_os = "dragonfly", target_os = "emscripten",
                  target_os = "freebsd", target_os = "haiku",     target_os = "illumos",
-                 target_os = "linux",   target_os = "macos",     target_os = "netbsd",
-                 target_os = "openbsd", target_os = "redox",     target_os = "solaris"))] {
+                 target_os = "linux",   target_os = "cygwin",    target_os = "macos",
+                 target_os = "netbsd",  target_os = "openbsd",   target_os = "redox",
+                 target_os = "solaris"))] {
         #[allow(dead_code)]
         mod util_libc;
         // Keep std-only trait definitions for backwards compatibility
@@ -220,6 +221,8 @@ cfg_if! {
         #[path = "bsd_arandom.rs"] mod imp;
     } else if #[cfg(target_os = "openbsd")] {
         #[path = "openbsd.rs"] mod imp;
+    } else if #[cfg(target_os = "cygwin")] {
+        #[path = "use_file.rs"] mod imp;
     } else if #[cfg(target_os = "redox")] {
         #[path = "use_file.rs"] mod imp;
     } else if #[cfg(target_os = "solaris")] {

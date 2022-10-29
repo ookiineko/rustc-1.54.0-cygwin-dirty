@@ -227,7 +227,8 @@ fn get_num_cpus() -> usize {
 
 #[cfg(any(target_os = "freebsd",
           target_os = "dragonfly",
-          target_os = "netbsd"))]
+          target_os = "netbsd",
+          target_os = "cygwin"))]
 fn get_num_cpus() -> usize {
     use std::ptr;
 
@@ -414,6 +415,7 @@ fn get_num_cpus() -> usize {
     target_os = "illumos",
     target_os = "fuchsia",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "openbsd",
     target_os = "freebsd",
     target_os = "dragonfly",

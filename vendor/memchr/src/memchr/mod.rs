@@ -272,7 +272,7 @@ pub fn memrchr(needle: u8, haystack: &[u8]) -> Option<usize> {
 
     #[cfg(all(
         memchr_libc,
-        target_os = "linux",
+        any(target_os = "linux", target_os = "cygwin"),
         not(all(target_arch = "x86_64", memchr_runtime_simd)),
         not(miri)
     ))]
@@ -282,7 +282,7 @@ pub fn memrchr(needle: u8, haystack: &[u8]) -> Option<usize> {
     }
 
     #[cfg(all(
-        not(all(memchr_libc, target_os = "linux")),
+        not(all(memchr_libc, target_os = "linux", target_os = "cygwin")),
         not(all(target_arch = "x86_64", memchr_runtime_simd)),
         not(miri),
     ))]

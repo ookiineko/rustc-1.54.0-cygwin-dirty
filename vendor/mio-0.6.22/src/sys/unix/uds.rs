@@ -67,15 +67,15 @@ pub struct UnixSocket {
 impl UnixSocket {
     /// Returns a new, unbound, non-blocking Unix domain socket
     pub fn stream() -> io::Result<UnixSocket> {
-        #[cfg(target_os = "linux")]
+        #[cfg(any(target_os = "linux", target_os = "cygwin"))]
         use libc::{SOCK_CLOEXEC, SOCK_NONBLOCK};
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "cygwin")))]
         const SOCK_CLOEXEC: libc::c_int = 0;
-        #[cfg(not(target_os = "linux"))]
+        #[cfg(not(any(target_os = "linux", target_os = "cygwin")))]
         const SOCK_NONBLOCK: libc::c_int = 0;
 
         unsafe {
-            if cfg!(target_os = "linux") {
+            if cfg!(target_os = "linux") || cfg!(target_os = "cygwin") {
                 let flags = libc::SOCK_STREAM | SOCK_CLOEXEC | SOCK_NONBLOCK;
                 match cvt(libc::socket(libc::AF_UNIX, flags, 0)) {
                     Ok(fd) => return Ok(UnixSocket::from_raw_fd(fd)),

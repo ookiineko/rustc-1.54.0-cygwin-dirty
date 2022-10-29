@@ -140,7 +140,7 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             #[cfg_attr(any(target_os = "linux", target_os = "android"), link_section = ".init_array")]
             #[cfg_attr(target_os = "freebsd", link_section = ".init_array")]
             #[cfg_attr(any(target_os = "macos", target_os = "ios"), link_section = "__DATA,__mod_init_func")]
-            #[cfg_attr(windows, link_section = ".CRT$XCU")]
+            #[cfg_attr(any(windows, target_os = "cygwin"), link_section = ".CRT$XCU")]
             #(#attrs)*
             static #ident
             :
@@ -216,7 +216,7 @@ pub fn ctor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             #[cfg_attr(any(target_os = "linux", target_os = "android"), link_section = ".init_array")]
             #[cfg_attr(target_os = "freebsd", link_section = ".init_array")]
             #[cfg_attr(any(target_os = "macos", target_os = "ios"), link_section = "__DATA,__mod_init_func")]
-            #[cfg_attr(windows, link_section = ".CRT$XCU")]
+            #[cfg_attr(any(windows, target_os = "cygwin"), link_section = ".CRT$XCU")]
             static #ctor_ident
             :
             unsafe fn() = {
@@ -286,7 +286,7 @@ pub fn dtor(_attribute: TokenStream, function: TokenStream) -> TokenStream {
             #[cfg_attr(any(target_os = "linux", target_os = "android"), link_section = ".init_array")]
             #[cfg_attr(target_os = "freebsd", link_section = ".init_array")]
             #[cfg_attr(any(target_os = "macos", target_os = "ios"), link_section = "__DATA,__mod_init_func")]
-            #[cfg_attr(windows, link_section = ".CRT$XCU")]
+            #[cfg_attr(any(windows, target_os = "cygwin"), link_section = ".CRT$XCU")]
             #(#attrs)*
             static __dtor_export
             :

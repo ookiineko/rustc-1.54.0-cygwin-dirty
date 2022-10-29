@@ -19,6 +19,7 @@ use std::net::{Ipv4Addr, Ipv6Addr};
         target_os = "android",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_vendor = "apple",
     )
 ))]
@@ -31,6 +32,7 @@ use std::os::unix::ffi::OsStrExt;
         target_os = "android",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_vendor = "apple",
     )
 ))]
@@ -116,6 +118,7 @@ pub(crate) use libc::{
         target_os = "fuchsia",
         target_os = "illumos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_vendor = "apple",
     )
@@ -230,6 +233,7 @@ impl Type {
             target_os = "fuchsia",
             target_os = "illumos",
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "netbsd",
             target_os = "openbsd"
         )
@@ -253,6 +257,7 @@ impl Type {
             target_os = "fuchsia",
             target_os = "illumos",
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "netbsd",
             target_os = "openbsd"
         )
@@ -268,6 +273,7 @@ impl Type {
         target_os = "fuchsia",
         target_os = "illumos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]
@@ -801,6 +807,7 @@ pub(crate) fn set_tcp_keepalive(fd: Socket, keepalive: &TcpKeepalive) -> io::Res
         target_os = "fuchsia",
         target_os = "illumos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_vendor = "apple",
     ))]
@@ -929,6 +936,7 @@ impl crate::Socket {
             target_os = "fuchsia",
             target_os = "illumos",
             target_os = "linux",
+            target_os = "cygwin",
             target_os = "netbsd",
             target_os = "openbsd"
         )
@@ -944,6 +952,7 @@ impl crate::Socket {
         target_os = "fuchsia",
         target_os = "illumos",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]
@@ -1035,6 +1044,7 @@ impl crate::Socket {
             target_os = "freebsd",
             target_os = "fuchsia",
             target_os = "linux",
+            target_os = "cygwin",
         )
     ))]
     pub fn is_listener(&self) -> io::Result<bool> {
@@ -1088,6 +1098,7 @@ impl crate::Socket {
             target_os = "freebsd",
             target_os = "fuchsia",
             target_os = "linux",
+            target_os = "cygwin",
         )
     ))]
     pub fn r#type(&self) -> io::Result<Type> {
@@ -1326,6 +1337,7 @@ impl crate::Socket {
             target_os = "android",
             target_os = "freebsd",
             target_os = "linux",
+            target_os = "cygwin",
             target_vendor = "apple",
         )
     ))]
@@ -1366,7 +1378,7 @@ impl crate::Socket {
         .map(|_| length as usize)
     }
 
-    #[cfg(all(feature = "all", any(target_os = "android", target_os = "linux")))]
+    #[cfg(all(feature = "all", any(target_os = "android", target_os = "linux", target_os = "cygwin")))]
     fn _sendfile(
         &self,
         file: RawFd,

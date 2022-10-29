@@ -13,6 +13,13 @@ mod tests {
         assert_eq!(OperatingSystem::host(), OperatingSystem::Linux);
     }
 
+    #[cfg(target_os = "cygwin")]
+    #[test]
+    fn test_cygwin() {
+        use super::*;
+        assert_eq!(OperatingSystem::host(), OperatingSystem::Cygwin);
+    }
+
     #[cfg(target_os = "macos")]
     #[test]
     fn test_macos() {

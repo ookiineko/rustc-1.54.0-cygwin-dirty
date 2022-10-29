@@ -129,6 +129,7 @@ impl Triple {
             | OperatingSystem::Hermit
             | OperatingSystem::L4re
             | OperatingSystem::Linux
+            | OperatingSystem::Cygwin
             | OperatingSystem::Netbsd
             | OperatingSystem::Openbsd
             | OperatingSystem::Redox

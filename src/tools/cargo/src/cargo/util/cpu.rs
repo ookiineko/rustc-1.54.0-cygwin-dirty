@@ -24,7 +24,7 @@ impl State {
     }
 }
 
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os = "cygwin"))]
 mod imp {
     use std::{fs, io};
 
@@ -224,7 +224,7 @@ mod imp {
     }
 }
 
-#[cfg(not(any(target_os = "linux", target_os = "macos", windows)))]
+#[cfg(not(any(target_os = "linux", target_os = "cygwin", target_os = "macos", windows)))]
 mod imp {
     use std::io;
 

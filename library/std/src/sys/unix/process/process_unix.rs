@@ -270,6 +270,7 @@ impl Command {
         target_os = "freebsd",
         all(target_os = "linux", target_env = "gnu"),
         all(target_os = "linux", target_env = "musl"),
+        target_os = "cygwin",
     )))]
     fn posix_spawn(
         &mut self,
@@ -286,6 +287,7 @@ impl Command {
         target_os = "freebsd",
         all(target_os = "linux", target_env = "gnu"),
         all(target_os = "linux", target_env = "musl"),
+        target_os = "cygwin",
     ))]
     fn posix_spawn(
         &mut self,

@@ -101,6 +101,9 @@ cfg_if! {
     } else if #[cfg(all(target_os = "linux", feature = "libc"))] {
         #[path = "os/linux/mod.rs"]
         mod os;
+    } else if #[cfg(all(target_os = "cygwin", feature = "libc"))] {
+        #[path = "os/cygwin/mod.rs"]
+        mod os;
     } else if #[cfg(all(target_os = "freebsd", feature = "libc"))] {
         #[cfg(target_arch = "aarch64")]
         #[path = "os/aarch64.rs"]

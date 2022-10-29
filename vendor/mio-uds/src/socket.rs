@@ -15,6 +15,7 @@ use cvt;
 // actually ever used (the blocks below are wrapped in `if cfg!` as well.
 #[cfg(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "android",
     target_os = "illumos",
     target_os = "solaris"
@@ -22,6 +23,7 @@ use cvt;
 use libc::{SOCK_CLOEXEC, SOCK_NONBLOCK};
 #[cfg(not(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "android",
     target_os = "illumos",
     target_os = "solaris"
@@ -29,6 +31,7 @@ use libc::{SOCK_CLOEXEC, SOCK_NONBLOCK};
 const SOCK_CLOEXEC: c_int = 0;
 #[cfg(not(any(
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "android",
     target_os = "illumos",
     target_os = "solaris"
@@ -49,6 +52,7 @@ impl Socket {
             // fallthrough to the fallback.
             if cfg!(any(
                 target_os = "linux",
+                target_os = "cygwin",
                 target_os = "android",
                 target_os = "illumos",
                 target_os = "solaris"
@@ -76,6 +80,7 @@ impl Socket {
             // Like above, see if we can set cloexec atomically
             if cfg!(any(
                 target_os = "linux",
+                target_os = "cygwin",
                 target_os = "android",
                 target_os = "illumos",
                 target_os = "solaris"

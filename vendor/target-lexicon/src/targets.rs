@@ -447,6 +447,7 @@ pub enum OperatingSystem {
     VxWorks,
     Wasi,
     Windows,
+    Cygwin,
 }
 
 /// The "environment" field, which specifies an ABI environment on top of the
@@ -1050,6 +1051,7 @@ impl fmt::Display for OperatingSystem {
             Ios => "ios",
             L4re => "l4re",
             Linux => "linux",
+            Cygwin => "cygwin",
             MacOSX {
                 major,
                 minor,
@@ -1128,6 +1130,7 @@ impl FromStr for OperatingSystem {
             "ios" => Ios,
             "l4re" => L4re,
             "linux" => Linux,
+            "cygwin" => Cygwin,
             "nebulet" => Nebulet,
             "netbsd" => Netbsd,
             "none" => None_,
@@ -1431,6 +1434,7 @@ mod tests {
             "x86_64-linux-kernel",
             "x86_64-apple-macosx10.7.0",
             "x86_64-pc-solaris",
+            "x86_64-pc-cygwin",
             "x86_64-pc-windows-gnu",
             "x86_64-pc-windows-msvc",
             "x86_64-rumprun-netbsd",

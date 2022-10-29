@@ -10,7 +10,7 @@ use crate::{util::LazyUsize, Error};
 use core::{num::NonZeroU32, ptr::NonNull};
 
 cfg_if! {
-    if #[cfg(any(target_os = "netbsd", target_os = "openbsd", target_os = "android"))] {
+    if #[cfg(any(target_os = "netbsd", target_os = "openbsd", target_os = "android", target_os = "cygwin"))] {
         use libc::__errno as errno_location;
     } else if #[cfg(any(target_os = "linux", target_os = "emscripten", target_os = "redox"))] {
         use libc::__errno_location as errno_location;

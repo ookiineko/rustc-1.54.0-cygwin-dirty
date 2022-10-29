@@ -5,6 +5,7 @@
     target_os = "emscripten",
     target_os = "freebsd",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "netbsd",
     target_os = "openbsd",
 ))]
@@ -17,6 +18,7 @@ use crate::os::unix::io::{AsRawFd, FromRawFd, IntoRawFd, RawFd};
 #[cfg(any(
     target_os = "android",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "ios",
@@ -34,6 +36,7 @@ use crate::time::Duration;
 #[cfg(any(
     target_os = "android",
     target_os = "linux",
+    target_os = "cygwin",
     target_os = "dragonfly",
     target_os = "freebsd",
     target_os = "ios",
@@ -204,6 +207,7 @@ impl UnixStream {
     #[cfg(any(
         target_os = "android",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "dragonfly",
         target_os = "freebsd",
         target_os = "ios",
@@ -364,8 +368,8 @@ impl UnixStream {
     ///
     /// # Examples
     ///
-    #[cfg_attr(any(target_os = "android", target_os = "linux"), doc = "```no_run")]
-    #[cfg_attr(not(any(target_os = "android", target_os = "linux")), doc = "```ignore")]
+    #[cfg_attr(any(target_os = "android", target_os = "linux", target_os = "cygwin"), doc = "```no_run")]
+    #[cfg_attr(not(any(target_os = "android", target_os = "linux", target_os = "cygwin")), doc = "```ignore")]
     /// #![feature(unix_socket_ancillary_data)]
     /// use std::os::unix::net::UnixStream;
     ///
@@ -375,7 +379,7 @@ impl UnixStream {
     ///     Ok(())
     /// }
     /// ```
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
     pub fn set_passcred(&self, passcred: bool) -> io::Result<()> {
         self.0.set_passcred(passcred)
@@ -387,7 +391,7 @@ impl UnixStream {
     /// Get the socket option `SO_PASSCRED`.
     ///
     /// [`set_passcred`]: UnixStream::set_passcred
-    #[cfg(any(doc, target_os = "android", target_os = "linux",))]
+    #[cfg(any(doc, target_os = "android", target_os = "linux", target_os = "cygwin",))]
     #[unstable(feature = "unix_socket_ancillary_data", issue = "76915")]
     pub fn passcred(&self) -> io::Result<bool> {
         self.0.passcred()
@@ -507,6 +511,7 @@ impl UnixStream {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
@@ -557,6 +562,7 @@ impl UnixStream {
         target_os = "emscripten",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd",
     ))]
