@@ -28,7 +28,9 @@ pub type sa_family_t = u16;
 pub type clockid_t = ::c_ulong;
 pub type pthread_t = *mut ::c_void;
 pub type pthread_mutex_t = *mut ::c_void;
-pub type pthread_key_t = *mut ::c_void;
+// Must be usize due to libstd/sys_common/thread_local.rs,
+// should technically be *mut ::c_void
+pub type pthread_key_t = usize;
 pub type pthread_attr_t = *mut ::c_void;
 pub type pthread_mutexattr_t = *mut ::c_void;
 pub type pthread_condattr_t = *mut ::c_void;
