@@ -1159,15 +1159,11 @@ pub const SIGEV_SIGNAL: ::c_int = 0;
 pub const SIGEV_NONE: ::c_int = 1;
 pub const SIGEV_THREAD: ::c_int = 2;
 
+pub const P_ALL: idtype_t = 0;
+pub const P_PID: idtype_t = 1;
+pub const P_PGID: idtype_t = 2;
 cfg_if! {
-    if #[cfg(not(target_os = "cygwin"))] {
-        pub const P_ALL: idtype_t = 0;
-        pub const P_PID: idtype_t = 1;
-        pub const P_PGID: idtype_t = 2;
-    }
-}
-cfg_if! {
-    if #[cfg(not(any(target_os = "emscripten", target_os = "cygwin")))] {
+    if #[cfg(not(target_os = "emscripten"))] {
         pub const P_PIDFD: idtype_t = 3;
     }
 }
@@ -1551,6 +1547,8 @@ extern "C" {
     pub fn pthread_rwlockattr_setpshared(attr: *mut pthread_rwlockattr_t, val: ::c_int) -> ::c_int;
     pub fn ptsname_r(fd: ::c_int, buf: *mut ::c_char, buflen: ::size_t) -> ::c_int;
     pub fn clearenv() -> ::c_int;
+    pub fn waitid(idtype: idtype_t, id: id_t, infop: *mut ::siginfo_t, options: ::c_int)
+                  -> ::c_int;
     pub fn setreuid(ruid: ::uid_t, euid: ::uid_t) -> ::c_int;
     pub fn setregid(rgid: ::gid_t, egid: ::gid_t) -> ::c_int;
     pub fn getresuid(ruid: *mut ::uid_t, euid: *mut ::uid_t, suid: *mut ::uid_t) -> ::c_int;
@@ -1592,15 +1590,6 @@ extern "C" {
     pub fn sendmsg(fd: ::c_int, msg: *const ::msghdr, flags: ::c_int) -> ::ssize_t;
     pub fn recvmsg(fd: ::c_int, msg: *mut ::msghdr, flags: ::c_int) -> ::ssize_t;
     pub fn uname(buf: *mut ::utsname) -> ::c_int;
-}
-
-cfg_if! {
-    if #[cfg(not(target_os = "cygwin"))] {
-        extern "C" {
-            pub fn waitid(idtype: idtype_t, id: id_t, infop: *mut ::siginfo_t, options: ::c_int)
-                -> ::c_int;
-        }
-    }
 }
 
 cfg_if! {

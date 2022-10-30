@@ -1167,15 +1167,11 @@ pub const SIGEV_SIGNAL: ::c_int = 0;
 pub const SIGEV_NONE: ::c_int = 1;
 pub const SIGEV_THREAD: ::c_int = 2;
 
+pub const P_ALL: idtype_t = 0;
+pub const P_PID: idtype_t = 1;
+pub const P_PGID: idtype_t = 2;
 cfg_if! {
-    if #[cfg(not(target_os = "cygwin"))] {
-        pub const P_ALL: idtype_t = 0;
-        pub const P_PID: idtype_t = 1;
-        pub const P_PGID: idtype_t = 2;
-    }
-}
-cfg_if! {
-    if #[cfg(not(any(target_os = "emscripten", target_os = "cygwin")))] {
+    if #[cfg(not(target_os = "emscripten"))] {
         pub const P_PIDFD: idtype_t = 3;
     }
 }
@@ -1603,6 +1599,12 @@ extern "C" {
         buflen: ::size_t,
     ) -> ::c_int;
     pub fn clearenv() -> ::c_int;
+    pub fn waitid(
+        idtype: idtype_t,
+        id: id_t,
+        infop: *mut ::siginfo_t,
+        options: ::c_int,
+    ) -> ::c_int;
     pub fn setreuid(ruid: ::uid_t, euid: ::uid_t) -> ::c_int;
     pub fn setregid(rgid: ::gid_t, egid: ::gid_t) -> ::c_int;
     pub fn getresuid(
@@ -1685,17 +1687,6 @@ extern "C" {
         flags: ::c_int,
     ) -> ::ssize_t;
     pub fn uname(buf: *mut ::utsname) -> ::c_int;
-}
-
-cfg_if! {
-    if #[cfg(not(target_os = "cygwin"))] {
-        pub fn waitid(
-            idtype: idtype_t,
-            id: id_t,
-            infop: *mut ::siginfo_t,
-            options: ::c_int,
-        ) -> ::c_int;
-    }
 }
 
 cfg_if! {
