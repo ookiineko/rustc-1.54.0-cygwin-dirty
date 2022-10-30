@@ -207,7 +207,6 @@ impl Drop for Thread {
 
 #[cfg(all(
     not(target_os = "linux"),
-    not(target_os = "cygwin"),
     not(target_os = "freebsd"),
     not(target_os = "macos"),
     not(target_os = "netbsd"),
@@ -410,7 +409,6 @@ pub mod guard {
         target_os = "android",
         target_os = "freebsd",
         target_os = "linux",
-        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "l4re"
     ))]
