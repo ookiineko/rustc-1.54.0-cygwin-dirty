@@ -11,7 +11,6 @@ pub type suseconds_t = ::c_long;
 pub type rlim_t = c_ulong;
 pub type mode_t = u32;
 pub type socklen_t = ::c_int;
-pub type pthread_t = ::c_char;  // __dummy
 pub type off_t = ::c_long;
 pub type off64_t = off_t;
 pub type fsblkcnt_t = ::c_ulong;
@@ -27,7 +26,15 @@ pub type sigset_t = ::c_ulong;
 pub type nfds_t = ::c_uint;
 pub type sa_family_t = u16;
 pub type clockid_t = ::c_ulong;
-pub type pthread_key_t = ::c_char;
+pub type pthread_t = *mut ::c_void;
+pub type pthread_mutex_t = *mut ::c_void;
+pub type pthread_key_t = *mut ::c_void;
+pub type pthread_attr_t = *mut ::c_void;
+pub type pthread_mutexattr_t = *mut ::c_void;
+pub type pthread_condattr_t = *mut ::c_void;
+pub type pthread_cond_t = *mut ::c_void;
+pub type pthread_rwlock_t = *mut ::c_void;
+pub type pthread_rwlockattr_t = *mut ::c_void;
 
 /* spawn.h */
 
@@ -937,17 +944,9 @@ pub const EWOULDBLOCK: ::c_int = EAGAIN;
 
 pub const PTHREAD_CREATE_JOINABLE: ::c_int = 0;
 pub const PTHREAD_CREATE_DETACHED: ::c_int = 1;
-align_const! {
-    pub const PTHREAD_MUTEX_INITIALIZER: pthread_mutex_t = pthread_mutex_t {
-        __dummy: 19,
-    };
-    pub const PTHREAD_COND_INITIALIZER: pthread_cond_t = pthread_cond_t {
-         __dummy: 21,
-    };
-    pub const PTHREAD_RWLOCK_INITIALIZER: pthread_rwlock_t = pthread_rwlock_t {
-         __dummy: 22,
-    };
-}
+pub const PTHREAD_MUTEX_INITIALIZER: ::pthread_mutex_t = 19 as *mut _;
+pub const PTHREAD_COND_INITIALIZER: ::pthread_cond_t = 21 as *mut _;
+pub const PTHREAD_RWLOCK_INITIALIZER: ::pthread_rwlock_t = 22 as *mut _;
 pub const PTHREAD_MUTEX_NORMAL: ::c_int = 2;
 pub const PTHREAD_MUTEX_RECURSIVE: ::c_int = 0;
 pub const PTHREAD_MUTEX_ERRORCHECK: ::c_int = 1;
@@ -1361,36 +1360,6 @@ s! {
     /* semaphore.h */
 
     pub struct sem_t {
-        __dummy: ::c_char,
-    }
-
-    /* sys/_pthreadtypes.h */
-
-    pub struct pthread_mutex_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_attr_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_mutexattr_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_condattr_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_cond_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_rwlock_t {
-        __dummy: ::c_char,
-    }
-
-    pub struct pthread_rwlockattr_t {
         __dummy: ::c_char,
     }
 
