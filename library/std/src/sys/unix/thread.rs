@@ -227,7 +227,6 @@ pub mod guard {
 
 #[cfg(any(
     target_os = "linux",
-    target_os = "cygwin",
     target_os = "freebsd",
     target_os = "macos",
     target_os = "netbsd",
@@ -409,6 +408,7 @@ pub mod guard {
         target_os = "android",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "l4re"
     ))]
