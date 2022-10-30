@@ -18,7 +18,7 @@ pub type dev_t = u32;
 pub type mode_t = u32;
 
 #[stable(feature = "pthread_t", since = "1.8.0")]
-pub type pthread_t = c_char;
+pub type pthread_t = *mut c_void;
 
 #[doc(inline)]
 #[stable(feature = "raw_ext", since = "1.1.0")]
