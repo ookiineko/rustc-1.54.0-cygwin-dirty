@@ -1422,7 +1422,7 @@ impl Build {
                 }
                 if target.contains("cygwin") {
                     cmd.push_cc_arg("-Wl,-allow-multiple-definition".into());
-                    cmd.push_cc_arg("/usr/lib/liblinux_compat.a");
+                    cmd.push_cc_arg("-llinux_compat");
                 }
                 // Disable generation of PIC on bare-metal for now: rust-lld doesn't support this yet
                 if self
