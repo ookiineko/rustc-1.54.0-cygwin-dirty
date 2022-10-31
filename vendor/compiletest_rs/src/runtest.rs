@@ -38,7 +38,7 @@ use extract_gdb_version;
 
 /// The name of the environment variable that holds dynamic library locations.
 pub fn dylib_env_var() -> &'static str {
-    if cfg!(windows) {
+    if cfg!(windows) || cfg!(target_os = "cygwin") {
         "PATH"
     } else if cfg!(target_os = "macos") {
         "DYLD_LIBRARY_PATH"

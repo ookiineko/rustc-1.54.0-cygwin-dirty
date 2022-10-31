@@ -881,6 +881,7 @@ class RustBuild(object):
         env["LD_LIBRARY_PATH"] = os.path.join(self.bin_root(True), "lib") + \
             (os.pathsep + env["LD_LIBRARY_PATH"]) \
             if "LD_LIBRARY_PATH" in env else ""
+        env["PATH"] = ':'.join([env["LD_LIBRARY_PATH"], env["PATH"]])
         env["DYLD_LIBRARY_PATH"] = os.path.join(self.bin_root(True), "lib") + \
             (os.pathsep + env["DYLD_LIBRARY_PATH"]) \
             if "DYLD_LIBRARY_PATH" in env else ""
