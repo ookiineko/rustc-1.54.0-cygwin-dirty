@@ -1420,6 +1420,14 @@ impl Build {
                     cmd.push_cc_arg("-ffunction-sections".into());
                     cmd.push_cc_arg("-fdata-sections".into());
                 }
+                if target.contains("cygwin") {
+                    cmd.push_cc_arg("-Wa,-mbig-obj".into());
+                    cmd.push_cc_arg("-Wl,-allow-multiple-definition".into());
+                    cmd.push_cc_arg("-D_GNU_SOURCE".into());
+                    cmd.push_cc_arg("-I/usr/include/linux_compat".into());
+                    cmd.push_cc_arg("-include".into());
+                    cmd.push_cc_arg("/usr/include/linux_compat/sys/sendfile.h".into());
+                }
                 // Disable generation of PIC on bare-metal for now: rust-lld doesn't support this yet
                 if self
                     .pic
