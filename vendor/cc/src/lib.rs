@@ -1427,7 +1427,7 @@ impl Build {
                     cmd.push_cc_arg("-include".into());
                     cmd.push_cc_arg("/usr/include/linux_compat/sys/sendfile.h".into());
                     cmd.push_cc_arg("-llinux_compat".into());
-                else if !target.contains("apple-ios") {
+                } else if !target.contains("apple-ios") {
                     cmd.push_cc_arg("-ffunction-sections".into());
                     cmd.push_cc_arg("-fdata-sections".into());
                 }
