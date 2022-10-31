@@ -30,6 +30,9 @@ macro_rules! some {
 }
 
 pub fn get_num_cpus() -> usize {
+    #[cfg(target_os = "cygwin")]
+    logical_cpus();
+    #[cfg(not(target_os = "cygwin"))]
     match cgroups_num_cpus() {
         Some(n) => n,
         None => logical_cpus(),

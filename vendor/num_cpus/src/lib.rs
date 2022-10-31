@@ -37,9 +37,9 @@ extern crate libc;
 #[cfg(target_os = "hermit")]
 extern crate hermit_abi;
 
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os = "cygwin"))]
 mod linux;
-#[cfg(target_os = "linux")]
+#[cfg(any(target_os = "linux", target_os = "cygwin"))]
 use linux::{get_num_cpus, get_num_physical_cpus};
 
 /// Returns the number of available CPUs of the current system.
@@ -107,7 +107,7 @@ pub fn get_physical() -> usize {
 }
 
 
-#[cfg(not(any(target_os = "linux", target_os = "windows", target_os="macos", target_os="openbsd")))]
+#[cfg(not(any(target_os = "linux", target_os = "cygwin", target_os = "windows", target_os="macos", target_os="openbsd")))]
 #[inline]
 fn get_num_physical_cpus() -> usize {
     // Not implemented, fall back
@@ -227,8 +227,7 @@ fn get_num_cpus() -> usize {
 
 #[cfg(any(target_os = "freebsd",
           target_os = "dragonfly",
-          target_os = "netbsd",
-          target_os = "cygwin"))]
+          target_os = "netbsd"))]
 fn get_num_cpus() -> usize {
     use std::ptr;
 
