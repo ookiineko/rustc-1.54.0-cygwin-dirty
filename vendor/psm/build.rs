@@ -13,6 +13,8 @@ fn find_assembly(arch: &str, endian: &str, os: &str, env: &str) -> Option<(&'sta
         ("x86", _, "windows", _) => Some(("src/arch/x86_windows_gnu.s", false)),
         ("x86_64", _, "windows", _) => Some(("src/arch/x86_64_windows_gnu.s", false)),
 
+        ("x86_64", _, "cygwin", _) => Some(("src/arch/x86_64_windows_gnu.s", false)),
+
         ("x86", _, _, _) => Some(("src/arch/x86.s", true)),
         ("x86_64", _, _, _) => Some(("src/arch/x86_64.s", true)),
         ("arm", _, _, _) => Some(("src/arch/arm_aapcs.s", true)),
