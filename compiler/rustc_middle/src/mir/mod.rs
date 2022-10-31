@@ -2200,7 +2200,7 @@ pub enum AggregateKind<'tcx> {
     Generator(DefId, SubstsRef<'tcx>, hir::Movability),
 }
 
-#[cfg(target_arch = "x86_64")]
+#[cfg(all(not(rust_compiler="mrustc"), target_arch = "x86_64"))]
 static_assert_size!(AggregateKind<'_>, 48);
 
 #[derive(Copy, Clone, Debug, PartialEq, PartialOrd, Eq, TyEncodable, TyDecodable, Hash, HashStable)]

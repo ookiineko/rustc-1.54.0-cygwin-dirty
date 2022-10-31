@@ -86,7 +86,7 @@ mod bit;
 mod cache;
 
 cfg_if! {
-    if #[cfg(miri)] {
+    if #[cfg(any(miri, rust_compiler = "mrustc"))] {
         // When running under miri all target-features that are not enabled at
         // compile-time are reported as disabled at run-time.
         //

@@ -32,7 +32,7 @@ pub enum Immediate<Tag = ()> {
     ScalarPair(ScalarMaybeUninit<Tag>, ScalarMaybeUninit<Tag>),
 }
 
-#[cfg(all(target_arch = "x86_64", target_pointer_width = "64"))]
+#[cfg(all(not(rust_compiler = "mrustc"), target_arch = "x86_64", target_pointer_width = "64"))]
 rustc_data_structures::static_assert_size!(Immediate, 56);
 
 impl<Tag> From<ScalarMaybeUninit<Tag>> for Immediate<Tag> {
@@ -87,7 +87,7 @@ pub struct ImmTy<'tcx, Tag = ()> {
     pub layout: TyAndLayout<'tcx>,
 }
 
-#[cfg(all(target_arch = "x86_64", target_pointer_width = "64"))]
+#[cfg(all(not(rust_compiler = "mrustc"), target_arch = "x86_64", target_pointer_width = "64"))]
 rustc_data_structures::static_assert_size!(ImmTy<'_>, 72);
 
 impl<Tag: Copy> std::fmt::Display for ImmTy<'tcx, Tag> {
