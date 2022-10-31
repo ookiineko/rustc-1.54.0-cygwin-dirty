@@ -1708,6 +1708,24 @@ s! {
         pub p_memsz: Elf64_Xword,
         pub p_align: Elf64_Xword,
     }
+
+    /* machine/types.h */
+
+    pub struct flock {
+        pub l_type: ::c_short,
+        pub l_whence: ::c_short,
+        pub l_start: ::off_t,
+        pub l_len: ::off_t,
+        pub l_pid: ::pid_t,
+    }
+
+    pub struct flock64 {
+        pub l_type: ::c_short,
+        pub l_whence: ::c_short,
+        pub l_start: ::off64_t,
+        pub l_len: ::off64_t,
+        pub l_pid: ::pid_t,
+    }
 }
 
 pub type statfs64 = statfs;
