@@ -2226,6 +2226,28 @@ extern "C" {
         attr: *mut posix_spawnattr_t,
         default: *const ::sigset_t,
     ) -> ::c_int;
+
+    /* sched.h */
+
+    pub fn sched_setparam(pid: ::pid_t, param: *const ::sched_param) -> ::c_int;
+    pub fn sched_getparam(pid: ::pid_t, param: *mut ::sched_param) -> ::c_int;
+    pub fn sched_setscheduler(
+        pid: ::pid_t,
+        policy: ::c_int,
+        param: *const ::sched_param,
+    ) -> ::c_int;
+    pub fn sched_getscheduler(pid: ::pid_t) -> ::c_int;
+    pub fn sched_get_priority_max(policy: ::c_int) -> ::c_int;
+    pub fn sched_get_priority_min(policy: ::c_int) -> ::c_int;
+    pub fn sched_rr_get_interval(pid: ::pid_t, tp: *mut ::timespec) -> ::c_int;
+    pub fn sched_getcpu() -> ::c_int;
+    pub fn sched_getaffinity(pid: ::pid_t, cpusetsize: ::size_t, cpuset: *mut cpu_set_t)
+                             -> ::c_int;
+    pub fn sched_setaffinity(
+        pid: ::pid_t,
+        cpusetsize: ::size_t,
+        cpuset: *const cpu_set_t,
+    ) -> ::c_int;
 }
 
 /* cygwin/socket.h */
