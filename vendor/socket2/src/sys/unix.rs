@@ -103,6 +103,7 @@ pub(crate) use libc::{IPV6_ADD_MEMBERSHIP, IPV6_DROP_MEMBERSHIP};
     target_os = "haiku",
     target_os = "illumos",
     target_os = "netbsd",
+    target_os = "cygwin",
     target_os = "openbsd",
     target_os = "solaris",
     target_vendor = "apple",
@@ -173,6 +174,7 @@ type IovLen = usize;
     target_os = "fuchsia",
     target_os = "illumos",
     target_os = "netbsd",
+    target_os = "cygwin",
     target_os = "openbsd",
     target_os = "solaris",
     target_vendor = "apple",
@@ -298,6 +300,7 @@ impl_debug!(
         target_os = "freebsd",
         target_os = "fuchsia",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]
@@ -308,6 +311,7 @@ impl_debug!(
         target_os = "freebsd",
         target_os = "fuchsia",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]
@@ -1240,7 +1244,7 @@ impl crate::Socket {
     /// [`set_reuse_port`]: crate::Socket::set_reuse_port
     #[cfg(all(
         feature = "all",
-        not(any(target_os = "solaris", target_os = "illumos"))
+        not(any(target_os = "solaris", target_os = "illumos", target_os = "cygwin"))
     ))]
     pub fn reuse_port(&self) -> io::Result<bool> {
         unsafe {
@@ -1258,7 +1262,7 @@ impl crate::Socket {
     /// This function is only available on Unix.
     #[cfg(all(
         feature = "all",
-        not(any(target_os = "solaris", target_os = "illumos"))
+        not(any(target_os = "solaris", target_os = "illumos", target_os = "cygwin"))
     ))]
     pub fn set_reuse_port(&self, reuse: bool) -> io::Result<()> {
         unsafe {

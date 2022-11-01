@@ -49,8 +49,8 @@ cfg_if::cfg_if! {
     if #[cfg(any(target_os = "dragonfly", target_os = "freebsd",
                  target_os = "ios", target_os = "macos",
                  target_os = "openbsd", target_os = "netbsd",
-                 target_os = "solaris", target_os = "illumos",
-                 target_os = "haiku"))] {
+                 target_os = "cygwin", target_os = "solaris",
+                 target_os = "illumos", target_os = "haiku"))] {
         use libc::IPV6_JOIN_GROUP as IPV6_ADD_MEMBERSHIP;
         use libc::IPV6_LEAVE_GROUP as IPV6_DROP_MEMBERSHIP;
     } else {
@@ -154,6 +154,7 @@ impl_debug!(
         target_os = "dragonfly",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]
@@ -163,6 +164,7 @@ impl_debug!(
         target_os = "dragonfly",
         target_os = "freebsd",
         target_os = "linux",
+        target_os = "cygwin",
         target_os = "netbsd",
         target_os = "openbsd"
     ))]

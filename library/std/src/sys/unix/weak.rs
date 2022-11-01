@@ -100,7 +100,7 @@ unsafe fn fetch(name: &str) -> usize {
     libc::dlsym(libc::RTLD_DEFAULT, name.as_ptr()) as usize
 }
 
-#[cfg(not(any(target_os = "linux", target_os = "cygwin", target_os = "android")))]
+#[cfg(not(any(target_os = "linux", target_os = "android")))]
 macro_rules! syscall {
     (fn $name:ident($($arg_name:ident: $t:ty),*) -> $ret:ty) => (
         unsafe fn $name($($arg_name: $t),*) -> $ret {

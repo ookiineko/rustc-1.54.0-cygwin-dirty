@@ -260,7 +260,10 @@ impl From<SocketAddrV6> for SockAddr {
         let sockaddr_in6 = sockaddr_in6 {
             sin6_family: AF_INET6 as sa_family_t,
             sin6_port: addr.port().to_be(),
+            #[cfg(target_os = "cygwin")]
+            sin6_flowinfo: addr.flowinfo(),
             sin6_addr,
+            #[cfg(not(target_os = "cygwin"))]
             sin6_flowinfo: addr.flowinfo(),
             #[cfg(unix)]
             sin6_scope_id: addr.scope_id(),
