@@ -210,7 +210,6 @@ enum ToolFamily {
 impl ToolFamily {
     /// What the flag to request debug info for this family of tools look like
     fn add_debug_flags(&self, cmd: &mut Tool) {
-        #[cfg(not(target_os = "cygwin"))]
         match *self {
             ToolFamily::Msvc { .. } => {
                 cmd.push_cc_arg("-Z7".into());
@@ -1402,9 +1401,7 @@ impl Build {
             ToolFamily::Gnu | ToolFamily::Clang => {
                 // arm-linux-androideabi-gcc 4.8 shipped with Android NDK does
                 // not support '-Oz'
-                if target.contains("cygwin") {
-                    cmd.push_opt_unless_duplicate("-Os".into());
-                } else if opt_level == "z" && cmd.family != ToolFamily::Clang {
+                if opt_level == "z" && cmd.family != ToolFamily::Clang {
                     cmd.push_opt_unless_duplicate("-Os".into());
                 } else {
                     cmd.push_opt_unless_duplicate(format!("-O{}", opt_level).into());
@@ -1420,9 +1417,7 @@ impl Build {
                 }
 
                 if target.contains("cygwin") {
-                    cmd.push_cc_arg("-s".into());
                     cmd.push_cc_arg("-Wa,-mbig-obj".into());
-                    cmd.push_cc_arg("-Wl,-allow-multiple-definition".into());
                     cmd.push_cc_arg("-D_GNU_SOURCE".into());
                     cmd.push_cc_arg("-llinux_compat".into());
                 } else if !target.contains("apple-ios") {
