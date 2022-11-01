@@ -1901,10 +1901,10 @@ extern "C" {
     pub fn utimensat(
         dirfd: ::c_int,
         path: *const ::c_char,
-        times: *const ::timeval,
+        times: *const ::timespec,
         flag: ::c_int,
     ) -> ::c_int;
-    pub fn futimens(fd: ::c_int, times: *const ::timeval) -> ::c_int;
+    pub fn futimens(fd: ::c_int, times: *const ::timespec) -> ::c_int;
 
     /* stdlib.h */
 
