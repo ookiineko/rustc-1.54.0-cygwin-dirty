@@ -717,11 +717,11 @@ impl MetadataExt for fs::Metadata {
     }
     #[cfg(target_os = "cygwin")]
     fn birthtim(&self) -> i64 {
-        self.st_birthtim()
+        self.st_birthtime()
     }
     #[cfg(target_os = "cygwin")]
     fn birthtim_nsec(&self) -> i64 {
-        self.st_birthtim_nsec()
+        self.st_birthtime_nsec()
     }
 }
 

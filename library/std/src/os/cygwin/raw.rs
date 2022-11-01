@@ -78,8 +78,8 @@ mod arch {
         #[stable(feature = "raw_ext", since = "1.1.0")]
         pub st_blocks: i64,
         #[stable(feature = "raw_ext", since = "1.1.0")]
-        pub st_birthtim: c_long,
+        pub st_birthtime: c_long,
         #[stable(feature = "raw_ext", since = "1.1.0")]
-        pub st_birthtim_nsec: c_long,
+        pub st_birthtime_nsec: c_long,
     }
 }

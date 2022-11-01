@@ -1425,8 +1425,8 @@ s! {
         pub st_ctime_nsec: ::c_long,
         pub st_blksize: ::blksize_t,
         pub st_blocks: ::blkcnt_t,
-        pub st_birthtim: ::time_t,
-        pub st_birthtim_nsec: ::c_long,
+        pub st_birthtime: ::time_t,
+        pub st_birthtime_nsec: ::c_long,
     }
 
     /* sys/dirent.h */
