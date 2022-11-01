@@ -71,6 +71,15 @@ pub const FD_SETSIZE: usize = 64;
 pub const RAND_MAX: ::c_int = 0x7fffffff;
 pub const FILENAME_MAX: ::c_uint = 4096;
 
+#[cfg_attr(feature = "extra_traits", derive(Debug))]
+pub enum timezone {}
+impl ::Copy for timezone {}
+impl ::Clone for timezone {
+    fn clone(&self) -> timezone {
+        *self
+    }
+}
+
 /* netdb.h */
 
 pub const AI_PASSIVE: ::c_int = 0x1;
@@ -1892,14 +1901,10 @@ extern "C" {
     pub fn utimensat(
         dirfd: ::c_int,
         path: *const ::c_char,
-        times: [*const ::timespec; 2],
+        times: *const ::timeval,
         flag: ::c_int,
     ) -> ::c_int;
-    pub fn futimes(
-        fd: ::c_int,
-        times: [*const ::timespec; 2]
-    ) -> ::c_int;
-    pub fn futimens(fd: ::c_int, times: [*const ::timespec; 2]) -> ::c_int;
+    pub fn futimens(fd: ::c_int, times: *const ::timeval) -> ::c_int;
 
     /* stdlib.h */
 
@@ -2267,6 +2272,22 @@ extern "C" {
         cpusetsize: ::size_t,
         cpuset: *const cpu_set_t,
     ) -> ::c_int;
+
+    /* sys/time.h */
+
+    pub fn futimes(
+        fd: ::c_int,
+        times: *const ::timeval
+    ) -> ::c_int;
+    pub fn lutimes(file: *const ::c_char, times: *const ::timeval) -> ::c_int;
+    pub fn settimeofday(tv: *const ::timeval, tz: *const ::timezone) -> ::c_int;
+    pub fn getitimer(which: ::c_int, curr_value: *mut ::itimerval) -> ::c_int;
+    pub fn setitimer(
+        which: ::c_int,
+        new_value: *const ::itimerval,
+        old_value: *mut ::itimerval,
+    ) -> ::c_int;
+    pub fn gettimeofday(tp: *mut ::timeval, tz: *mut ::c_void) -> ::c_int;
 }
 
 /* cygwin/socket.h */
