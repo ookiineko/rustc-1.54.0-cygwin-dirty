@@ -1,6 +1,5 @@
 cfg_if! {
     if #[cfg(all(
-        not(rust_compiler = "mrustc"),
         crc32fast_stdarchx86,
         any(target_arch = "x86", target_arch = "x86_64")
     ))] {

@@ -88,7 +88,7 @@ pub enum Place<Tag = ()> {
     Local { frame: usize, local: mir::Local },
 }
 
-#[cfg(all(not(rust_compiler = "mrustc"), target_arch = "x86_64", target_pointer_width = "64"))]
+#[cfg(all(target_arch = "x86_64", target_pointer_width = "64"))]
 rustc_data_structures::static_assert_size!(Place, 64);
 
 #[derive(Copy, Clone, Debug)]
@@ -97,7 +97,7 @@ pub struct PlaceTy<'tcx, Tag = ()> {
     pub layout: TyAndLayout<'tcx>,
 }
 
-#[cfg(all(not(rust_compiler = "mrustc"), target_arch = "x86_64", target_pointer_width = "64"))]
+#[cfg(all(target_arch = "x86_64", target_pointer_width = "64"))]
 rustc_data_structures::static_assert_size!(PlaceTy<'_>, 80);
 
 impl<'tcx, Tag> std::ops::Deref for PlaceTy<'tcx, Tag> {
