@@ -108,7 +108,7 @@ pub fn from_creation_time(meta: &fs::Metadata) -> Option<FileTime> {
         ("freebsd", freebsd),
         ("ios", ios),
         ("macos", macos),
-        ("openbsd", openbsd)
+        ("openbsd", openbsd),
         ("cygwin", cygwin)
     }
 
