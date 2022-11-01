@@ -1899,7 +1899,7 @@ extern "C" {
         fd: ::c_int,
         times: [*const ::timespec; 2]
     ) -> ::c_int;
-    pub fn futimens(fd: ::c_int, times: *const ::timespec) -> ::c_int;
+    pub fn futimens(fd: ::c_int, times: [*const ::timespec; 2]) -> ::c_int;
 
     /* stdlib.h */
 
