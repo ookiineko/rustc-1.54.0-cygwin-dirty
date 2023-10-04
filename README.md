@@ -1,3 +1,5 @@
+# DEPRECATION NOTICE: a non-dirty port is working now see: https://github.com/ookiineko-cygport/rust and https://gist.github.com/ookiineko/057eb3a91825313caeaf6d793a33b0b2 for more details.
+
 # The Rust Programming Language
 
 This is the main source code repository for [Rust]. It contains the compiler,
